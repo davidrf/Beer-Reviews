@@ -25,6 +25,7 @@ feature 'user posts new beer', %Q{
 
     expect(page).to have_content(beer.name)
   end
+<<<<<<< HEAD
 
   scenario 'unsuccessful post' do
     user = FactoryGirl.create(:user)
@@ -51,4 +52,7 @@ feature 'user posts new beer', %Q{
     visit root_path
 
     expect(page).not_to have_button("Add Beer")
+  end
+=======
+>>>>>>> 3c79ba469ef7a37331254539dbe958ff0d4cb774
 end
