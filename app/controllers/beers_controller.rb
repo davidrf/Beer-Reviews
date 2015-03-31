@@ -18,7 +18,7 @@ class BeersController < ApplicationController
       redirect_to 'beer#show'
     else
       flash[:notice] = "Beer not added"
-      render 'new'
+      render :new
     end
   end
 

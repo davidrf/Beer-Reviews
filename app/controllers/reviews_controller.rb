@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
     @beer = Beer.find(params[:beer_id])
     @review = Review.find(params[:id])
     if @review.destroy
-      flash[:notice] = "Review deleted."
+      flash[:notice] = "Review deleted"
     else
       flash[:notice] = "Review not deleted"
     end
