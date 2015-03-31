@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'beers#index'
   devise_for :users
 
+  resources :beers do
+    resources :reviews, except: [:index, :show]
+  end
 end
