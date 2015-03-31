@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 feature "As the original beer poster, I want to be able to delete my beer", %{
 
   [ ] I must be signed in

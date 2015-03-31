@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 feature "As an admin, I want to be able to delete any beer", %{
   [ ] I must be signed in
   [ ] I must be on the details page for a specific beer

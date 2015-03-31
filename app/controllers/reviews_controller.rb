@@ -13,11 +13,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @beer = Beer.find(params[:id])
+    @beer = Beer.find(params[:beer_id])
     if @review.save
       flash[:notice] = "Review Saved"
-      redirect_to beer_show_path(@beer)
+      redirect_to beer_path(@beer)
     else
+      flash[:notice] = "Invalid Input"
       render :new
     end
   end
@@ -28,19 +29,30 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @beer = Beer.find(params[:id])
-    if @Review.update(review_params)
+    @beer = Beer.find(params[:beer_id])
+    if @review.update(review_params)
       flash[:notice] = "Review Updated"
-      redirect_to beer_show_path(@beer)
+      redirect_to beer_path(@beer)
     else
       flash[:notice] = "Review not updated"
       render :edit
     end
   end
 
+  def destroy
+    @beer = Beer.find(params[:beer_id])
+    @review = Review.find(params[:id])
+    if @review.destroy
+      flash[:notice] = "Review deleted."
+    else
+      flash[:notice] = "Review not deleted"
+    end
+    redirect_to beer_path(@beer)
+  end
+
   protected
 
   def review_params
-    params.require(:review).permit(:rating, :description, :beer_id)
+    params.require(:review).permit(:rating, :description, :beer_id, :user_id)
   end
 end

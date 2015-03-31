@@ -9,6 +9,7 @@ class BeersController < ApplicationController
       flash[:notice] = "Beer was saved"
       redirect_to 'beer#show'
     else
+      flash[:notice] = "Beer not added"
       render 'new'
     end
   end
@@ -27,7 +28,6 @@ class BeersController < ApplicationController
 
   def update
     @beer = Beer.find(params[:id])
-
     if @beer.update(beer_params)
       flash[:notice] = "Beer updated"
       redirect_to beers_path(@beer)
@@ -38,8 +38,12 @@ class BeersController < ApplicationController
   end
 
   def destroy
-    Beer.delete(params[:id])
-    flash[:notice] = "Beer deleted."
+    @beer = Beer.find(params[:id])
+    if @beer.destroy
+      flash[:notice] = "Beer deleted."
+    else
+      flash[:notice] = "Beer was not deleted"
+    end
     redirect_to beers_path
   end
 
