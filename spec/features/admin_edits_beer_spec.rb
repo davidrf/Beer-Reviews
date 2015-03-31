@@ -15,11 +15,12 @@ feature 'Admin edits information for each individual beer page', %Q{
   scenario 'successfully edit information' do
     admin = FactoryGirl.create(:admin_with_beer)
 
-    visit beer_path(@beer)
+    visit root_path
     click_link 'Sign In'
+    vist beer_path(@beer)
     click_link 'Edit Beer'
     fill_in 'Name', with: 'Budweiser'
-    select 
+    select 'Lager', from: 'Style'
     click_button 'Update Beer'
 
     expect(page).to have_content("Your beer has been updated!")
@@ -28,10 +29,14 @@ feature 'Admin edits information for each individual beer page', %Q{
   scenario 'unsuccessfully edit information' do
     admin = FactoryGirl.create(:admin_with_beer)
 
+    visit root_path
+    click_link 'Sign In'
     visit beer_path(@beer)
+    click_link 'Edit Beer'
     fill_in 'Name', with: ''
-    fill_in 'Style', with: ''
+    select '', from: 'Style'
     click_button 'Update Beer'
 
     expact(page).to_not have_content("Your beer has been updated!")
+  end
 end
