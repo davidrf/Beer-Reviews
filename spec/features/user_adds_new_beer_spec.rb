@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user posts new beer', %Q{
+feature 'user posts new beer', %{
   As a user,
   I want to post information about a new beer
   So that I can share my beer love with the rest of the world
