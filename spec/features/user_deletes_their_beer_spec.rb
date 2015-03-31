@@ -10,13 +10,13 @@ feature "As the original beer poster, I want to be able to delete my beer, becau
 
   scenario 'successfully deleted a beer' do
 
-    user = FactoryGirl.create(:user_with_beer)
-
+    beer = FactoryGirl.create(:beer)
+    user = beer.user
     visit root_path
     click_link "Sign In"
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_link user.beers.first
+    click_link beer.name
     click_link "Delete Beer"
 
     expect(page).to have_content("Beer Successfully Deleted")
