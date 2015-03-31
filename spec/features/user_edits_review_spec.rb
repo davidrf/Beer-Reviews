@@ -6,7 +6,8 @@ feature "User edits review", %{
 
     # I must be signed in
     # I must be the creator of this review
-    # I must be able to get here by clicking the edit button next to the review on the details page for a specific beer
+    # I must be able to get here by clicking the edit button next to the
+    # review on the details page for a specific beer
     # I will be redirected to a separate page where I can edit the form
 
   scenario "successfully edit review" do
@@ -15,7 +16,7 @@ feature "User edits review", %{
     user = review.user
 
     visit root_path
-    click_link "Sign In"
+    sign_in_as(user)
     click_link beer.name
     click_button "Edit Review"
     fill_in "Description", with: "I really like this beer"
@@ -31,7 +32,7 @@ feature "User edits review", %{
     user = review.user
 
     visit root_path
-    click_link "Sign In"
+    sign_in_as(user)
     click_link beer.name
     click_button "Edit Review"
     click_button "Update Review"
@@ -43,7 +44,6 @@ feature "User edits review", %{
   scenario "edit review without signing in" do
     review = FactoryGirl.create(:review)
     beer = FactoryGirl.create(:beer)
-    user = review.user
 
     visit root_path
     click_link beer.name

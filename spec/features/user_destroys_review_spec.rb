@@ -4,7 +4,6 @@ feature "User deletes review", %{
   As a user, I want to be able to delete my
   review so that others don’t have to see how dumb I am
   } do
-
     # I must be signed in
     # I must be the creator of this review
     # I must be on the details page for a specific beer
@@ -17,7 +16,7 @@ feature "User deletes review", %{
     user = review.user
 
     visit root_path
-    click_link "Sign In"
+    sign_in_as(user)
     click_link beer.name
     click_button "Delete Review"
 
@@ -27,7 +26,6 @@ feature "User deletes review", %{
   scenario "delete review without signing in" do
     review = FactoryGirl.create(:review)
     beer = FactoryGirl.create(:beer)
-    user = review.user
 
     visit root_path
     click_link beer.name

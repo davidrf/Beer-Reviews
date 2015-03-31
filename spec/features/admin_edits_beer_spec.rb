@@ -16,7 +16,7 @@ feature "Admin edits information for each individual beer page", %{
     beer = FactoryGirl.create(:beer)
 
     visit root_path
-    click_link "Sign In"
+    sign_in_as(admin)
     click_link beer.name
     click_button "Edit Beer"
     fill_in "Name", with: "Budweiser"
@@ -28,9 +28,10 @@ feature "Admin edits information for each individual beer page", %{
 
   scenario "unsuccessfully edits beer" do
     beer = FactoryGirl.create(:beer)
+    admin = FactoryGirl.create(:admin)
 
     visit root_path
-    click_link "Sign In"
+    sign_in_as(admin)
     click_link beer.name
     click_button "Edit Beer"
     click_button "Update Beer"
@@ -40,7 +41,6 @@ feature "Admin edits information for each individual beer page", %{
   end
 
   scenario "edits beer without signing in" do
-    admin = FactoryGirl.create(:admin)
     beer = FactoryGirl.create(:beer)
 
     visit root_path
