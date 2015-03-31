@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.1.5"
 
 gem 'rails', '4.2.1'
 gem 'pg'
@@ -25,3 +26,7 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'kaminari'
+
+group :test do
+  gem 'coveralls', require: false
+end
