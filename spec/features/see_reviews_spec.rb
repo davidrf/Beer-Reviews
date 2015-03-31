@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "see reviews", %Q{
+feature "see reviews", %{
   As a user,
   I want to view the reviews for a beer
   So that my mind can be influenced
@@ -17,10 +17,12 @@ feature "see reviews", %Q{
     visit root_path
     click_link reviews.first.beer
 
-    expect(page).to have_selector("ul li:first-child",
+    expect(page).to have_selector(
+      "ul li:first-child",
       text: reviews.last.description)
-    expect(page).to have_selector("ul li:last-child",
+    expect(page).to have_selector(
+      "ul li:last-child",
       text: reviews.first.description)
-    expect(page).to_not have_content(unrelated_review)
+    expect(page).to_not have_content(unrelated_review.description)
   end
 end

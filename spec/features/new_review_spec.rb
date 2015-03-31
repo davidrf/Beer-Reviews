@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "new reviews", %Q{
+feature "new reviews", %{
   As a user,
   I want to post a review for a beer
   so that I can influence the minds of others
