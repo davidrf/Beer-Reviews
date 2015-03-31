@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'edit beer information', %Q{
+feature 'edit beer information', %{
   As the original beer poster,
   I want to be able to edit the information for the beer that I’ve added
   so that people think I’m competent
@@ -11,19 +11,19 @@ feature 'edit beer information', %Q{
   # * I must fill in the required fields
   # * I must be presented with errors if I fill out the form incorrectly
 
-  scenario 'sucessfully edited' do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:beer, user: user)
+  scenario "sucessfully edited" do
+    beer = FactoryGirl.create(:beer)
+    user = beer.user
 
     visit root_path
-    click_link 'Sign In'
+    sign_in_as(user)
     click_link beer.name
-    click_link 'Edit Beer'
+    click_link "Edit Beer"
 
-    fill_in 'Name', with: 'Edited Beer'
-    fill_in 'ABV', with: '50'
-    fill_in 'IBU', with: '100'
-    select 'Lager', from: 'Style'
+    fill_in "Name", with: "Edited Beer"
+    fill_in "ABV", with: "50"
+    fill_in "IBU", with: "100"
+    select "Lager", from: "Style"
     click_button 'Update Beer'
 
     expect(page).to have_content('Beer Information Updated')
@@ -34,23 +34,23 @@ feature 'edit beer information', %Q{
   end
 
   scenario 'required fields not filled in' do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:beer, user: user)
+    beer = FactoryGirl.create(:beer)
+    user = beer.user
 
     visit root_path
-    click_link 'Sign In'
+    sign_in_as(user)
     click_link beer.name
     click_link 'Edit Beer'
 
     fill_in 'Name', with: 'Edited Beer'
     click_button 'Update Beer'
 
+    expect(page).to have_content('Invalid Beer Submission')
     expect(page).to have_content('Name cannot be blank')
   end
 
   scenario 'user not signed in' do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:beer, user: user)
+    beer = FactoryGirl.create(:beer)
 
     visit root_path
     click_link beer.name
@@ -63,7 +63,7 @@ feature 'edit beer information', %Q{
     beer = FactoryGirl.create(:beer)
 
     visit root_path
-    click_link 'Sign In'
+    sign_in_as(user)
     click_link beer.name
 
     expect(page).to_not have_button('Edit Beer')

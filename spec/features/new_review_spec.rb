@@ -11,16 +11,14 @@ feature 'new reviews', %Q{
   # * I must be presented with errors if I fill out the form incorrectly
 
   scenario 'successfully post review' do
-    user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
+    user = beer.user
 
     visit root_path
-    click_link 'Sign In'
+    sign_in_as(user)
     click_link beer.name
 
     select '10', from: 'Rating'
-
-    select 'Rating', from: '10'
     fill_in 'Description', with: 'Great Beer'
     click_button 'Submit Review'
 
@@ -30,29 +28,25 @@ feature 'new reviews', %Q{
   end
 
   scenario 'required fields not filled in' do
-    user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
+    user = beer.user
 
     visit root_path
-    click_link 'Sign In'
+    sign_in_as(user)
     click_link beer.name
 
     select '10', from: 'Rating'
-    fill_in 'Description', with: 'Great Beer'
+    click_button 'Submit Review'
 
     expect(page).to have_content('Description cannot be blank')
   end
 
   scenario 'not signed in' do
-    user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
 
     visit root_path
     click_link beer.name
 
-    select '10', from: 'Rating'
-    fill_in 'Description', with: 'Great Beer'
-
-    expect(page).to_not have_content('Please sign in to review')
+    expect(page).to_not have_button('Submit Review')
   end
 end

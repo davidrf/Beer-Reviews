@@ -11,18 +11,16 @@ feature 'see reviews', %Q{
   # * I must see the reviews listed in order, most recent first
 
   scenario 'sucessfully see reviews' do
-    beer_1 = FactoryGirl.create(:beer)
-    review_1 = Factorygirl.create(:review, beer: beer_1)
-    review_2 = Factorygirl.create(:review, beer: beer_1)
-    review_3 = Factorygirl.create(:review)
+    reviews = Factorygirl.create_list(:review, 2)
+    unrelated_review = Factorygirl.create(:review)
 
     visit root_path
-    click_link beer_1.name
+    click_link reviews.first.beer
 
     expect(page).to have_selector('ul li:first-child',
-      text: review_2.description)
+      text: reviews.last.description)
     expect(page).to have_selector('ul li:last-child',
-      text: review_1.description)
-    expect(page).to_not have_content(review_3.description)
+      text: reviews.first.description)
+    expect(page).to_not have_content(unrelated_review)
   end
 end
