@@ -1,4 +1,12 @@
 class BeersController < ApplicationController
+  def index
+    @beers = Beer.page(params[:page]).order(:name)
+  end
+
+  def show
+    @beer = Beer.find(params[:id])
+  end
+
   def new
     @beer = Beer.new
   end
@@ -12,14 +20,6 @@ class BeersController < ApplicationController
       flash[:notice] = "Beer not added"
       render 'new'
     end
-  end
-
-  def index
-    @beers = Beer.page(params[:page]).order(:name)
-  end
-
-  def show
-    @beer = Beer.find(params[:id])
   end
 
   def edit
@@ -40,7 +40,7 @@ class BeersController < ApplicationController
   def destroy
     @beer = Beer.find(params[:id])
     if @beer.destroy
-      flash[:notice] = "Beer deleted."
+      flash[:notice] = "Beer deleted"
     else
       flash[:notice] = "Beer was not deleted"
     end

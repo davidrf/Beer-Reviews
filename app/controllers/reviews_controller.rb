@@ -1,12 +1,4 @@
 class ReviewsController < ApplicationController
-  def index
-    @reviews = Review.all.limit(10)
-  end
-
-  def show
-    @review = Review.find(params[:id])
-  end
-
   def new
     @review = Review.new
   end
