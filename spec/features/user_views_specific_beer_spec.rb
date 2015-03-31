@@ -5,8 +5,7 @@ feature 'user views specific beer', %Q{
   I want to visit the details page of a specific beer
   So that I can learn more about it } do
   scenario 'goes to specific beer' do
-    beer = FactoryGirl.create(:beer)
-
+    beer1 = FactoryGirl.create(:beer)
     visit root_path
     click_on beer.name
 
