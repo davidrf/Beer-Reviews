@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'edit beer information', %{
+feature "edit beer information", %{
   As the original beer poster,
   I want to be able to edit the information for the beer that I’ve added
   so that people think I’m competent
@@ -24,41 +24,41 @@ feature 'edit beer information', %{
     fill_in "ABV", with: "50"
     fill_in "IBU", with: "100"
     select "Lager", from: "Style"
-    click_button 'Update Beer'
+    click_button "Update Beer"
 
-    expect(page).to have_content('Beer Information Updated')
-    expect(page).to have_content('Edited Beer')
-    expect(page).to have_content('50')
-    expect(page).to have_content('100')
-    expect(page).to have_content('Lager')
+    expect(page).to have_content("Beer Information Updated")
+    expect(page).to have_content("Edited Beer")
+    expect(page).to have_content("50")
+    expect(page).to have_content("100")
+    expect(page).to have_content("Lager")
   end
 
-  scenario 'required fields not filled in' do
+  scenario "required fields not filled in" do
     beer = FactoryGirl.create(:beer)
     user = beer.user
 
     visit root_path
     sign_in_as(user)
     click_link beer.name
-    click_link 'Edit Beer'
+    click_link "Edit Beer"
 
-    fill_in 'Name', with: 'Edited Beer'
-    click_button 'Update Beer'
+    fill_in "Name", with: "Edited Beer"
+    click_button "Update Beer"
 
-    expect(page).to have_content('Invalid Beer Submission')
-    expect(page).to have_content('Name cannot be blank')
+    expect(page).to have_content("Invalid Beer Submission")
+    expect(page).to have_content("Name cannot be blank")
   end
 
-  scenario 'user not signed in' do
+  scenario "user not signed in" do
     beer = FactoryGirl.create(:beer)
 
     visit root_path
     click_link beer.name
 
-    expect(page).to_not have_button('Edit Beer')
+    expect(page).to_not have_button("Edit Beer")
   end
 
-  scenario 'not owner of beer' do
+  scenario "not owner of beer" do
     user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
 
@@ -66,6 +66,6 @@ feature 'edit beer information', %{
     sign_in_as(user)
     click_link beer.name
 
-    expect(page).to_not have_button('Edit Beer')
+    expect(page).to_not have_button("Edit Beer")
   end
 end

@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'new reviews', %Q{
+feature "new reviews", %Q{
   As a user,
   I want to post a review for a beer
   so that I can influence the minds of others
@@ -10,7 +10,7 @@ feature 'new reviews', %Q{
   # * I must provide a rating and description
   # * I must be presented with errors if I fill out the form incorrectly
 
-  scenario 'successfully post review' do
+  scenario "successfully post review" do
     beer = FactoryGirl.create(:beer)
     user = beer.user
 
@@ -18,16 +18,16 @@ feature 'new reviews', %Q{
     sign_in_as(user)
     click_link beer.name
 
-    select '10', from: 'Rating'
-    fill_in 'Description', with: 'Great Beer'
-    click_button 'Submit Review'
+    select "10", from: "Rating"
+    fill_in "Description", with: "Great Beer"
+    click_button "Submit Review"
 
-    expect(page).to have_content('Review Posted!')
-    expect(page).to have_content('10')
-    expect(page).to have_content('Great Beer')
+    expect(page).to have_content("Review Posted!")
+    expect(page).to have_content("10")
+    expect(page).to have_content("Great Beer")
   end
 
-  scenario 'required fields not filled in' do
+  scenario "required fields not filled in" do
     beer = FactoryGirl.create(:beer)
     user = beer.user
 
@@ -35,18 +35,18 @@ feature 'new reviews', %Q{
     sign_in_as(user)
     click_link beer.name
 
-    select '10', from: 'Rating'
-    click_button 'Submit Review'
+    select "10", from: "Rating"
+    click_button "Submit Review"
 
-    expect(page).to have_content('Description cannot be blank')
+    expect(page).to have_content("Description cannot be blank")
   end
 
-  scenario 'not signed in' do
+  scenario "not signed in" do
     beer = FactoryGirl.create(:beer)
 
     visit root_path
     click_link beer.name
 
-    expect(page).to_not have_button('Submit Review')
+    expect(page).to_not have_button("Submit Review")
   end
 end
