@@ -17,12 +17,7 @@ feature "see reviews", %{
     visit root_path
     click_link reviews.first.beer
 
-    expect(page).to have_selector(
-      "ul li:first-child",
-      text: reviews.last.description)
-    expect(page).to have_selector(
-      "ul li:last-child",
-      text: reviews.first.description)
+    page.body.index(reviews.last.description) < page.body.index(reviews.first.description)
     expect(page).to_not have_content(unrelated_review.description)
   end
 end
