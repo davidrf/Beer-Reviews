@@ -27,7 +27,6 @@ feature "Admin edits information for each individual beer page", %{
   end
 
   scenario "unsuccessfully edits beer" do
-    admin = FactoryGirl.create(:admin)
     beer = FactoryGirl.create(:beer)
 
     visit root_path
