@@ -1,11 +1,10 @@
 require 'spec_helper'
-feature "As an admin, I want to be able to delete any beer, because once again, I’m in charge"
-  # Acceptance Criteria
-  # [ ] I must be signed in
-  # [ ] I must be on the details page for a specific beer
-  # [ ] I must be able to delete my beer by clicking the delete button
-  # [ ] After deleting each beer, I will be redirected to the beer index page
-
+feature 'As an admin, I want to be able to delete any beer', %Q{
+  [ ] I must be signed in
+  [ ] I must be on the details page for a specific beer
+  [ ] I must be able to delete my beer by clicking the delete button
+  [ ] After deleting each beer, I will be redirected to the beer index page
+} do
   scenario 'successfully deleted a beer' do
 
     admin = FactoryGirl.create(:admin)

@@ -1,12 +1,10 @@
 require 'spec_helper'
-feature "As an admin, I want to be able to delete all reviews, because what I say goes"
-
-  #Acceptance Criteria
-  #[ ]I must be signed in
-  #[ ]I must be on the details page for a specific beer
-  #[ ]I must be able to delete a review by clicking the delete button
-  #[ ]After deleting a review, the page will re-render
-
+feature 'As an admin, I want to be able to delete all reviews', %Q{
+  [ ]I must be signed in
+  [ ]I must be on the details page for a specific beer
+  [ ]I must be able to delete a review by clicking the delete button
+  [ ]After deleting a review, the page will re-render
+} do
   scenario 'successfully deleted all reviews' do
 
     admin = FactoryGirl.create(:admin)
