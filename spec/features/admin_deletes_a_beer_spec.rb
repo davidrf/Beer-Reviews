@@ -1,22 +1,20 @@
 require 'spec_helper'
-feature "As the original beer poster, I want to be able to delete my beer, because I no longer enjoy its taste" do
-
+feature "As an admin, I want to be able to delete any beer, because once again, I’m in charge"
   # Acceptance Criteria
   # [ ] I must be signed in
-  # [ ] I must be the creator of this beer post
   # [ ] I must be on the details page for a specific beer
   # [ ] I must be able to delete my beer by clicking the delete button
-  # [ ] After deleting my beer, I will be redirected to the beer index page
+  # [ ] After deleting each beer, I will be redirected to the beer index page
 
   scenario 'successfully deleted a beer' do
 
-    user = FactoryGirl.create(:user_with_beer)
-
+    user = FactoryGirl.create(:admin)
+    beer = FactoryGirl.create(:beer)
     visit root_path
     click_link "Sign In"
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_link user.beers.first
+    click_link beer.name
     click_link "Delete Beer"
 
     expect(page).to have_content("Beer Successfully Deleted")
