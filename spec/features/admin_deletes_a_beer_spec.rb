@@ -8,12 +8,12 @@ feature "As an admin, I want to be able to delete any beer, because once again, 
 
   scenario 'successfully deleted a beer' do
 
-    user = FactoryGirl.create(:admin)
+    admin = FactoryGirl.create(:admin)
     beer = FactoryGirl.create(:beer)
     visit root_path
     click_link "Sign In"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "Email", with: admin.email
+    fill_in "Password", with: admin.password
     click_link beer.name
     click_link "Delete Beer"
 
