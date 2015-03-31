@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user edits beer', %Q{
+feature 'edit beer information', %Q{
   As a signed up user,
   I want to post a review for a beer
   So that I can influence the minds of others
@@ -10,12 +10,12 @@ feature 'user edits beer', %Q{
   # * I must provide a rating and description
   # * I must be presented with errors if I fill out the form incorrectly
 
-  scenario 'beer information is change' do
+  scenario 'sucessfully edited' do
     user = FactoryGirl.create(:user_with_beer)
 
     visit root_path
     click_link 'Sign In'
-    click_link user.beers.first
+    click_link user.beers.first.name
     click_link 'Edit Beer'
 
     fill_in 'Name', with: 'Edited Beer'
@@ -25,5 +25,25 @@ feature 'user edits beer', %Q{
     click_button 'Update Beer'
 
     expect(page).to have_content('Beer Information Updated')
+  end
+
+  scenario 'user not signed in' do
+    user = FactoryGirl.create(:user_with_beer)
+
+    visit root_path
+    click_link user.beers.first.name
+
+    expect(page).to_not have_button('Edit Beer')
+  end
+
+  scenario 'not owner of beer' do
+    user = FactoryGirl.create(:user)
+    beer = FactoryGirl.create(:beer)
+
+    visit root_path
+    click_link 'Sign In'
+    click_link beer.name
+
+    expect(page).to_not have_button('Edit Beer')
   end
 end
