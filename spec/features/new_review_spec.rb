@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'see reviews', %Q{
+feature 'new reviews', %Q{
   As a user,
   I want to post a review for a beer
   so that I can influence the minds of others
@@ -10,23 +10,49 @@ feature 'see reviews', %Q{
   # * I must provide a rating and description
   # * I must be presented with errors if I fill out the form incorrectly
 
-  scenario 'sucessfully see reviews' do
-    review = FactoryGirl.create(:review)
+  scenario 'successfully post review' do
+    user = FactoryGirl.create(:user)
+    beer = FactoryGirl.create(:beer)
+
+    visit root_path
+    click_link 'Sign In'
+    click_link beer.name
+
+    select '10', from: 'Rating'
+
+    select 'Rating', from: '10'
+    fill_in 'Description', with: 'Great Beer'
+    click_button 'Submit Review'
+
+    expect(page).to have_content('Review Posted!')
+    expect(page).to have_content('10')
+    expect(page).to have_content('Great Beer')
+  end
+
+  scenario 'required fields not filled in' do
+    user = FactoryGirl.create(:user)
+    beer = FactoryGirl.create(:beer)
+
+    visit root_path
+    click_link 'Sign In'
+    click_link beer.name
+
+    select '10', from: 'Rating'
+    fill_in 'Description', with: 'Great Beer'
+
+    expect(page).to have_content('Description cannot be blank')
+  end
+
+  scenario 'not signed in' do
+    user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
 
     visit root_path
     click_link beer.name
-    click_link review.beer.name
 
     select '10', from: 'Rating'
-    fill_in 'Description', with: 'Great beer'
-    click_button 
+    fill_in 'Description', with: 'Great Beer'
 
-    expect(page).to have_selector('ul li:first-child',
-      text: beer.reviews.first.description)
-    expect(page).to have_selector('ul li:last-child',
-      text: beer.reviews.last.description)
-    expect(page).to_not have_content(another_beer.reviews.first.description)
-    expect(page).to_not have_content(another_beer.reviews.last.description)
+    expect(page).to_not have_content('Please sign in to review')
   end
 end
