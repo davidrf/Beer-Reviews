@@ -9,10 +9,10 @@
 </div>
 <% end %>
 
-<%= form_for [@beer, @review], url: beer_reviews_path do |f| %>
+<%= form_for [@beer, @review], url: beer_review_path do |f| %>
 <div class="review">
   <%= f.label :rating %>
-  <%= f.select :rating, options_for_select(0..10) %>
+  <%= f.select :rating, options_for_select(1..10) %>
 </div>
 
 <div class="review">
@@ -23,7 +23,5 @@
 <div class="post">
   <%= f.submit "Edit Review" %>
 </div>
-<div class="delete">
-<%= button_to "Delete", reviews_path @review, method: 'delete' %>
-</div>
+
 <% end %>
