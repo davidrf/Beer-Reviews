@@ -5,11 +5,11 @@ feature "Admin edits information for each individual beer page", %{
     the information for all beers cause I’m in charge
   } do
 
-# Acceptance Criteria
-# I must be signed in
-# I must be able to get here through the details page for a specific beer
-# I must fill in the required fields
-# I must be presented with errors if I fill out the form incorrectly
+  # Acceptance Criteria
+  # I must be signed in
+  # I must be able to get here through the details page for a specific beer
+  # I must fill in the required fields
+  # I must be presented with errors if I fill out the form incorrectly
 
   scenario "successfully edits beer" do
     admin = FactoryGirl.create(:user_admin)
