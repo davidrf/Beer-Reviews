@@ -3,7 +3,7 @@
   Style: <%= @beer.style.name %>
 </div>
 <div>
-  ABV: <%= @beer.abv %>
+  ABV: <%= @beer.abv %>%
 </div>
 <div>
   IBU: <%= @beer.ibu %>
@@ -22,3 +22,5 @@ Reviews:
     </div>
   </div>
 <%-end-%>
+
+<%= link_to "New Review", new_beer_review_path(@beer) %>

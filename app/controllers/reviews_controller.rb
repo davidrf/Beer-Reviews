@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @review = Review.new
   end
@@ -6,6 +8,8 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @beer = Beer.find(params[:beer_id])
+    @review.beer = @beer
+    @review.user = current_user
     if @review.save
       flash[:notice] = "Review Saved"
       redirect_to beer_path(@beer)
@@ -16,12 +20,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
-    @beer = Beer.find(params[:beer_id])
+    @review = current_user.reviews.find(params[:id])
+    @beer = @review.beer
     if @review.update(review_params)
       flash[:notice] = "Review Updated"
       redirect_to beer_path(@beer)
@@ -32,8 +36,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @beer = Beer.find(params[:beer_id])
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
+    @beer = @review.beer
     if @review.destroy
       flash[:notice] = "Review deleted"
     else
@@ -45,6 +49,6 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:rating, :description, :beer_id, :user_id)
+    params.require(:review).permit(:rating, :description)
   end
 end
