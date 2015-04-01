@@ -1,0 +1,23 @@
+<h1><%= @beer.name %></h1>
+<div>
+  Style: <%= @beer.style.name %>
+</div>
+<div>
+  ABV: <%= @beer.abv %>
+</div>
+<div>
+  IBU: <%= @beer.ibu %>
+</div>
+<div>
+Description: <%= @beer.description %>
+</div>
+Reviews: <%-@beer.reviews.each do |review| %>
+          <div class="panel">
+            <div>
+              Rating: <%= review.rating %>
+            </div>
+            <div>
+              Description: <%= review.description %>
+            </div>
+          </div>
+         <%-end-%>
