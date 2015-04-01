@@ -8,7 +8,8 @@ class Beer < ActiveRecord::Base
   validates :user, presence: true
   validates :description, length: { maximum: 5000 }
 
-  def owner?(logged_in_user)
-    user == logged_in_user
+  def owner_or_admin?(logged_in_user)
+    return false unless logged_in_user
+    user == logged_in_user || "admin" == logged_in_user.role
   end
 end
