@@ -26,11 +26,20 @@ class BeersController < ApplicationController
   end
 
   def edit
-    @beer = current_user.beers.find(params[:id])
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
+    else
+      @beer = current_user.beers.find(params[:id])
+    end
   end
 
   def update
-    @beer = current_user.beers.find(params[:id])
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
+    else
+      @beer = current_user.beers.find(params[:id])
+    end
+
     if @beer.update(beer_params)
       flash[:notice] = "Beer Information Updated"
       redirect_to beer_path(@beer)
@@ -41,7 +50,12 @@ class BeersController < ApplicationController
   end
 
   def destroy
-    @beer = current_user.beers.find(params[:id])
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
+    else
+      @beer = current_user.beers.find(params[:id])
+    end
+
     if @beer.destroy
       flash[:notice] = "Beer Successfully Deleted"
     else
