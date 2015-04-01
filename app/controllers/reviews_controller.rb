@@ -23,7 +23,6 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
   end
 
-
   def update
     @review = current_user.reviews.find(params[:id])
     @beer = @review.beer
