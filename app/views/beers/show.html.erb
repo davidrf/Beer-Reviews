@@ -11,7 +11,7 @@
 <div>
 Description: <%= @beer.description %>
 </div>
-<%-if beer_owner-%>
+<%-if @beer.owner?(current_user) -%>
   <%= link_to "Delete Beer", beer_path(@beer), method: :delete %>
   <%= link_to "Edit Beer", edit_beer_path(@beer) %>
 <%-end-%>

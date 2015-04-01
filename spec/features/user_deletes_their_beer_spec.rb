@@ -19,7 +19,7 @@ feature "As the original beer poster, I want to be able to delete my beer", %{
     expect(page).to have_content("Beer Successfully Deleted")
   end
 
-  scenario "unsuccessfully delete a beer" do
+  scenario "user cannot delete beer" do
     user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:beer)
 
