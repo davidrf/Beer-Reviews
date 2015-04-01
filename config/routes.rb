@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :beers
 
   resources :beers do
-    resources :reviews, except: [:index, :show]
+    resources :reviews, only: [:new, :create, :edit, :update]
   end
 
+  resources :reviews, only: [:destroy]
 end

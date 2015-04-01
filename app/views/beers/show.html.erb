@@ -11,6 +11,10 @@
 <div>
 Description: <%= @beer.description %>
 </div>
+<%-if @beer.owner?(current_user) -%>
+  <%= link_to "Delete Beer", beer_path(@beer), method: :delete %>
+  <%= link_to "Edit Beer", edit_beer_path(@beer) %>
+<%-end-%>
 Reviews:
 <% @beer.reviews.each do |review| %>
   <div class="panel">
