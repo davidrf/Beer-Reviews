@@ -1,8 +1,8 @@
 class AddIndexesAndConstraints < ActiveRecord::Migration
   def up
     change_column :beers, :abv, :float
-    change_column :beers, :description, :text, :limit => 5000
-    change_column :reviews, :description, :text, :limit => 1000
+    change_column :beers, :description, :text, limit: 5000
+    change_column :reviews, :description, :text, limit: 1000
     add_index :beers, :name, unique: true
     add_index :beers, :style_id
     add_index :styles, :name, unique: true
