@@ -7,4 +7,8 @@ class Beer < ActiveRecord::Base
   validates :style, presence: true
   validates :user, presence: true
   validates :description, length: { maximum: 5000 }
+
+  def owner?(logged_in_user)
+    user == logged_in_user
+  end
 end
