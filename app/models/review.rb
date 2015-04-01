@@ -10,4 +10,8 @@ class Review < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 1000 }
   validates :user, presence: true
   validates :beer, presence: true
+
+  def owner?(logged_in_user)
+    user == logged_in_user
+  end
 end

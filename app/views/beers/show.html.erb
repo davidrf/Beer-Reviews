@@ -3,7 +3,7 @@
   Style: <%= @beer.style.name %>
 </div>
 <div>
-  ABV: <%= @beer.abv %>
+  ABV: <%= @beer.abv %>%
 </div>
 <div>
   IBU: <%= @beer.ibu %>
@@ -16,8 +16,12 @@ Description: <%= @beer.description %>
   <%= link_to "Edit Beer", edit_beer_path(@beer) %>
 <%-end-%>
 Reviews:
-<%-@beer.reviews.each do |review|-%>
+<% @beer.reviews.each do |review| %>
   <div class="panel">
+    <% if review.owner?(current_user) %>
+    <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
+    <%= link_to "Delete Review", beer_review_path(@beer, review), method: :delete %>
+    <% end %>
     <div>
       Rating: <%= review.rating %>
     </div>
@@ -25,4 +29,6 @@ Reviews:
       Description: <%= review.description %>
     </div>
   </div>
-<%-end-%>
+<% end %>
+
+<%= link_to "New Review", new_beer_review_path(@beer) %>
