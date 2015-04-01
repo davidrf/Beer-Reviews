@@ -6,9 +6,6 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     role 'user'
-    factory :user_admin do
-      role 'admin'
-    end
   end
 
   factory :beer do

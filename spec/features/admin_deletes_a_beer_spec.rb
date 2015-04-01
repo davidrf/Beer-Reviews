@@ -6,7 +6,7 @@ feature "As an admin, I want to be able to delete any beer", %{
   [ ] After deleting each beer, I will be redirected to the beer index page
 } do
   scenario "successfully deleted a beer" do
-    admin = FactoryGirl.create(:user_admin)
+    admin = FactoryGirl.create(:user, role: 'admin')
     beer = FactoryGirl.create(:beer)
     visit root_path
     sign_in_as(admin)

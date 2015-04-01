@@ -12,7 +12,7 @@ feature "Admin edits information for each individual beer page", %{
   # I must be presented with errors if I fill out the form incorrectly
 
   scenario "successfully edits beer" do
-    admin = FactoryGirl.create(:user_admin)
+    admin = FactoryGirl.create(:user, role: 'admin')
     beer = FactoryGirl.create(:beer)
 
     visit root_path
@@ -28,7 +28,7 @@ feature "Admin edits information for each individual beer page", %{
 
   scenario "unsuccessfully edits beer" do
     beer = FactoryGirl.create(:beer)
-    admin = FactoryGirl.create(:user_admin)
+    admin = FactoryGirl.create(:user, role: 'admin')
 
     visit root_path
     sign_in_as(admin)
