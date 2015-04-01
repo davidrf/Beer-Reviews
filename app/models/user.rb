@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   has_many :beers
 
   def admin?
-    self.role == "admin"
+    role == "admin"
   end
 end

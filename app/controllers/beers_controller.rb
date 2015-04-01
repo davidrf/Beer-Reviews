@@ -39,7 +39,7 @@ class BeersController < ApplicationController
     else
       @beer = current_user.beers.find(params[:id])
     end
-    
+
     if @beer.update(beer_params)
       flash[:notice] = "Beer Information Updated"
       redirect_to beer_path(@beer)
