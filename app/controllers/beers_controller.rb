@@ -13,9 +13,10 @@ class BeersController < ApplicationController
 
   def create
     @beer = Beer.new(beer_params)
+    @beer.user_id = current_user.id
     if @beer.save
       flash[:notice] = "Beer was saved"
-      redirect_to 'beer#show'
+      redirect_to beers_path
     else
       flash[:notice] = "Beer not added"
       render :new
