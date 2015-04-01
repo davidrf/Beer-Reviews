@@ -32,10 +32,10 @@ class BeersController < ApplicationController
   def update
     @beer = current_user.beers.find(params[:id])
     if @beer.update(beer_params)
-      flash[:notice] = "Beer updated"
-      redirect_to beers_path(@beer)
+      flash[:notice] = "Beer Information Updated"
+      redirect_to beer_path(@beer)
     else
-      flash[:notice] = "Beer was not updated"
+      flash[:notice] = "Invalid Beer Submission"
       render :edit
     end
   end
@@ -43,7 +43,7 @@ class BeersController < ApplicationController
   def destroy
     @beer = current_user.beers.find(params[:id])
     if @beer.destroy
-      flash[:notice] = "Beer deleted"
+      flash[:notice] = "Beer Successfully Deleted"
     else
       flash[:notice] = "Beer was not deleted"
     end
