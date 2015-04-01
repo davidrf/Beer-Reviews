@@ -9,8 +9,8 @@ FactoryGirl.define do
 
   factory :beer do
     name "Magic Hat"
-    abv "5"
-    ibu "60"
+    abv 5
+    ibu 60
     description "Super hoppy goodness"
     style
     user
@@ -24,6 +24,6 @@ FactoryGirl.define do
   end
 
   factory :style do
-    name "IPA"
+    sequence(:name) { |n| "IPA #{n}" }
   end
 end

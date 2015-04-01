@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :beers do
-    resources :reviews, except: [:index, :show]
+    resources :reviews, only: [:new, :create, :edit, :update]
   end
+
+  resources :reviews, only: [:destroy]
 end

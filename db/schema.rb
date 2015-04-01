@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331170704) do
+ActiveRecord::Schema.define(version: 20150401151155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "beers", force: :cascade do |t|
     t.string  "name",        null: false
-    t.integer "abv"
+    t.float   "abv"
     t.integer "ibu"
     t.text    "description"
     t.integer "style_id",    null: false
     t.integer "user_id",     null: false
   end
+
+  add_index "beers", ["name"], name: "index_beers_on_name", unique: true, using: :btree
+  add_index "beers", ["style_id"], name: "index_beers_on_style_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating",      null: false
@@ -34,9 +37,14 @@ ActiveRecord::Schema.define(version: 20150331170704) do
     t.datetime "updated_at"
   end
 
+  add_index "reviews", ["beer_id"], name: "index_reviews_on_beer_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   create_table "styles", force: :cascade do |t|
     t.string "name", null: false
   end
+
+  add_index "styles", ["name"], name: "index_styles_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
