@@ -11,14 +11,14 @@
 <div>
 Description: <%= @beer.description %>
 </div>
-<%-if @beer.owner_or_admin?(current_user) -%>
+<%-if user_signed_in? && @beer.amendable?(current_user) -%>
   <%= link_to "Delete Beer", beer_path(@beer), method: :delete %>
   <%= link_to "Edit Beer", edit_beer_path(@beer) %>
 <%-end-%>
 Reviews:
-<% @beer.reviews.reverse.each do |review| %>
+<% @beer.reviews.order(created_at: :desc).each do |review| %>
   <div class="panel">
-    <% if review.owner_or_admin?(current_user) %>
+    <% if user_signed_in? && review.amendable?(current_user) %>
     <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
     <%= link_to "Delete Review", review_path(review), method: :delete %>
     <% end %>

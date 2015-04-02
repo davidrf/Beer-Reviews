@@ -28,6 +28,24 @@ feature "new reviews", %{
     expect(page).to have_content("Great Beer")
   end
 
+  scenario "any user can post review" do
+    beer = FactoryGirl.create(:beer)
+    user = FactoryGirl.create(:user)
+
+    visit root_path
+    sign_in_as(user)
+    click_link beer.name
+    click_link "New Review"
+
+    select "10", from: "Rating"
+    fill_in "Description", with: "Great Beer"
+    click_button "Submit Review"
+
+    expect(page).to have_content("Review Saved")
+    expect(page).to have_content("10")
+    expect(page).to have_content("Great Beer")
+  end
+
   scenario "required fields not filled in" do
     beer = FactoryGirl.create(:beer)
     user = beer.user

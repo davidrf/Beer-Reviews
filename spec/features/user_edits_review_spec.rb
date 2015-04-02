@@ -51,4 +51,14 @@ feature "User edits review", %{
     expect(page).to have_content(review.description)
     expect(page).to_not have_link("Edit Review")
   end
+
+  scenario "user not review poster" do
+    beer = FactoryGirl.create(:beer)
+    another_user = FactoryGirl.create(:user)
+
+    visit root_path
+    click_link beer.name
+
+    expect(page).to_not have_link("Edit Review")
+  end
 end
