@@ -28,6 +28,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'carrierwave_direct'
 gem 'fog'
 
 group :test do
