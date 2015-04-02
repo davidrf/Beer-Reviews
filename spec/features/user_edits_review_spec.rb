@@ -57,6 +57,7 @@ feature "User edits review", %{
     another_user = FactoryGirl.create(:user)
 
     visit root_path
+    sign_in_as(another_user)
     click_link beer.name
 
     expect(page).to_not have_link("Edit Review")

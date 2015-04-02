@@ -33,4 +33,15 @@ feature "User deletes review", %{
     expect(page).to have_content(review.description)
     expect(page).to_not have_link("Delete Review")
   end
+
+  scenario "user not review poster" do
+    beer = FactoryGirl.create(:beer)
+    another_user = FactoryGirl.create(:user)
+
+    visit root_path
+    sign_in_as(another_user)
+    click_link beer.name
+
+    expect(page).to_not have_link("Edit Review")
+  end
 end
