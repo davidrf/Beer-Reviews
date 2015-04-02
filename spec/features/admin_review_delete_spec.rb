@@ -16,14 +16,4 @@ feature "As an admin, I want to be able to delete all reviews", %{
 
     expect(page).to have_content("Your review has been deleted!")
   end
-
-  scenario "unsuccessfully delete all reviews" do
-    user = FactoryGirl.create(:user, role: "admin")
-    review = FactoryGirl.create(:review)
-
-    visit root_path
-    click_link review.beer.name
-
-    expect(page).to_not have_link("Delete Reviews")
-  end
 end

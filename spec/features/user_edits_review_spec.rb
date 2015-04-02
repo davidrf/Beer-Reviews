@@ -4,11 +4,11 @@ feature "User edits review", %{
   As a user, I want to be able to edit my review so that it sounds better
   } do
 
-    # I must be signed in
-    # I must be the creator of this review
-    # I must be able to get here by clicking the edit button next to the
-    # review on the details page for a specific beer
-    # I will be redirected to a separate page where I can edit the form
+  # I must be signed in
+  # I must be the creator of this review
+  # I must be able to get here by clicking the edit button next to the
+  # review on the details page for a specific beer
+  # I will be redirected to a separate page where I can edit the form
 
   scenario "successfully edit review" do
     beer = FactoryGirl.create(:beer)
@@ -48,6 +48,7 @@ feature "User edits review", %{
     visit root_path
     click_link beer.name
 
+    expect(page).to have_content(review.description)
     expect(page).to_not have_link("Edit Review")
   end
 end
