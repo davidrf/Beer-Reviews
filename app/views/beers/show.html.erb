@@ -23,7 +23,7 @@ Reviews:
     <%= link_to "Delete Review", review_path(review), method: :delete %>
     <% end %>
     <div>
-      <%= image_tag(current_user.avatar)%>
+      <%= image_tag(review.user.avatar)%>
     </div>
     <div>
       Rating: <%= review.rating %>
