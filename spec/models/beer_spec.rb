@@ -7,6 +7,9 @@ RSpec.describe Beer, type: :model do
   it { should have_valid(:name).when("Lagunitas", "Heineken") }
   it { should_not have_valid(:name).when(nil, "") }
 
+  it { should have_valid(:description).when("Hoppy beer") }
+  it { should_not have_valid(:description).when("a" * 5001) }
+
   it { should have_valid(:user).when(User.new) }
   it { should_not have_valid(:user).when(nil) }
 

@@ -8,7 +8,7 @@ RSpec.describe Review, type: :model do
   it { should_not have_valid(:rating).when(nil, "", 1.5, 0, 11) }
 
   it { should have_valid(:description).when("Great Beer") }
-  it { should_not have_valid(:description).when(nil, "") }
+  it { should_not have_valid(:description).when(nil, "", "a" * 1001) }
 
   it { should have_valid(:user).when(User.new) }
   it { should_not have_valid(:user).when(nil) }

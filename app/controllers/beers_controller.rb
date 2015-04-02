@@ -1,4 +1,6 @@
 class BeersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @beers = Beer.page(params[:page]).order(:name)
   end
@@ -13,10 +15,10 @@ class BeersController < ApplicationController
 
   def create
     @beer = Beer.new(beer_params)
-    @beer.user_id = current_user.id
+    @beer.user = current_user
     if @beer.save
       flash[:notice] = "Beer was saved"
-      redirect_to beers_path
+      redirect_to @beer
     else
       flash[:notice] = "Beer not added"
       render :new
@@ -24,24 +26,38 @@ class BeersController < ApplicationController
   end
 
   def edit
-    @beer = Beer.find(params[:id])
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
+    else
+      @beer = current_user.beers.find(params[:id])
+    end
   end
 
   def update
-    @beer = Beer.find(params[:id])
-    if @beer.update(beer_params)
-      flash[:notice] = "Beer updated"
-      redirect_to beers_path(@beer)
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
     else
-      flash[:notice] = "Beer was not updated"
+      @beer = current_user.beers.find(params[:id])
+    end
+
+    if @beer.update(beer_params)
+      flash[:notice] = "Beer Information Updated"
+      redirect_to beer_path(@beer)
+    else
+      flash[:notice] = "Invalid Beer Submission"
       render :edit
     end
   end
 
   def destroy
-    @beer = Beer.find(params[:id])
+    if current_user.admin?
+      @beer = Beer.find(params[:id])
+    else
+      @beer = current_user.beers.find(params[:id])
+    end
+
     if @beer.destroy
-      flash[:notice] = "Beer deleted"
+      flash[:notice] = "Beer Successfully Deleted"
     else
       flash[:notice] = "Beer was not deleted"
     end
