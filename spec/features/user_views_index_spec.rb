@@ -11,6 +11,5 @@ feature 'user views index', %{
     visit root_path
 
     expect(page).to have_content(beer.name)
-    # expect(page).to have_content(beer.rating)
   end
 end

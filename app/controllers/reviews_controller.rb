@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
     @beer = @review.beer
     if @review.update(review_params)
-      flash[:notice] = "Review Updated"
+      flash[:notice] = "Your review has been updated!"
       redirect_to beer_path(@beer)
     else
       flash[:notice] = "Review not updated"
@@ -36,10 +36,15 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = current_user.reviews.find(params[:id])
+    if current_user.admin?
+      @review = Review.find(params[:id])
+    else
+      @review = current_user.reviews.find(params[:id])
+    end
+
     @beer = @review.beer
     if @review.destroy
-      flash[:notice] = "Review deleted"
+      flash[:notice] = "Your review has been deleted!"
     else
       flash[:notice] = "Review not deleted"
     end

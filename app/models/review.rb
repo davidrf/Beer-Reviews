@@ -11,7 +11,7 @@ class Review < ActiveRecord::Base
   validates :user, presence: true
   validates :beer, presence: true
 
-  def owner?(logged_in_user)
-    user == logged_in_user
+  def amendable?(logged_in_user)
+    logged_in_user == user || logged_in_user.admin?
   end
 end

@@ -39,13 +39,4 @@ feature "Admin edits information for each individual beer page", %{
 
     expect(page).to have_content("Invalid Beer Submission")
   end
-
-  scenario "edits beer without signing in" do
-    beer = FactoryGirl.create(:beer)
-
-    visit root_path
-    click_link beer.name
-
-    expect(page).to_not have_content("Edit Beer")
-  end
 end
