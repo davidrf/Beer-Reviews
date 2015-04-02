@@ -1,4 +1,5 @@
 class Review < ActiveRecord::Base
+  include Authorization
   belongs_to :beer
   belongs_to :user
 
@@ -10,8 +11,4 @@ class Review < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 1000 }
   validates :user, presence: true
   validates :beer, presence: true
-
-  def amendable?(logged_in_user)
-    logged_in_user == user || logged_in_user.admin?
-  end
 end
