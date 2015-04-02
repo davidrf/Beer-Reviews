@@ -16,11 +16,11 @@ Description: <%= @beer.description %>
   <%= link_to "Edit Beer", edit_beer_path(@beer) %>
 <%-end-%>
 Reviews:
-<% @beer.reviews.each do |review| %>
+<% @beer.reviews.reverse.each do |review| %>
   <div class="panel">
-    <% if review.owner?(current_user) %>
+    <% if review.owner_or_admin?(current_user) %>
     <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
-    <%= link_to "Delete Review", beer_review_path(@beer, review), method: :delete %>
+    <%= link_to "Delete Review", review_path(review), method: :delete %>
     <% end %>
     <div>
       Rating: <%= review.rating %>
@@ -31,4 +31,6 @@ Reviews:
   </div>
 <% end %>
 
-<%= link_to "New Review", new_beer_review_path(@beer) %>
+<% if user_signed_in? %>
+  <%= link_to "New Review", new_beer_review_path(@beer) %>
+<% end %>

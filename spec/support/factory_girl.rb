@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :beer do
-    name "Magic Hat"
+    sequence(:name) {|n| "Magic Hat #{n}" }
     abv 5
     ibu 60
     description "Super hoppy goodness"
@@ -19,7 +19,7 @@ FactoryGirl.define do
 
   factory :review do
     rating "7"
-    description "I love this beer so much"
+    sequence(:description) {|n| "I love this beer #{n}" }
     user
     beer
   end
