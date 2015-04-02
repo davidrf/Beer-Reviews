@@ -10,7 +10,7 @@ feature "new reviews", %{
   # * I must provide a rating and description
   # * I must be presented with errors if I fill out the form incorrectly
 
-  scenario "successfully post review" do
+  scenario "successfully post review on beer a user created" do
     beer = FactoryGirl.create(:beer)
     user = beer.user
 
