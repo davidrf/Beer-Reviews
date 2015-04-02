@@ -15,6 +15,9 @@ Reviews:
 <%-@beer.reviews.each do |review|-%>
   <div class="panel">
     <div>
+      <%= image_tag(current_user.avatar)%>
+    </div>
+    <div>
       Rating: <%= review.rating %>
     </div>
     <div>

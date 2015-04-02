@@ -16,6 +16,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry', group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
@@ -26,6 +27,8 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'fog'
 
 group :test do
   gem 'coveralls', require: false
