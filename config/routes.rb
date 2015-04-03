@@ -4,18 +4,12 @@ Rails.application.routes.draw do
 
   resources :beers
 
-  resources :reviews, only: [:destroy]
+  resources :reviews do
+    resources :downvotes, only: [:create]
+    resources :upvotes, only: [:create]
+  end
 
   resources :beers do
-    resources :reviews, only: [:new, :create, :edit, :update]
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
-
-  resources :reviews do
-    resources :downvotes
-  end
-
-  resources :reviews do
-    resources :upvotes
-  end
-
 end
