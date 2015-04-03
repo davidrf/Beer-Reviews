@@ -1,4 +1,5 @@
 class Review < ActiveRecord::Base
+  include Authorization
   belongs_to :beer
   belongs_to :user
   has_many :upvotes
