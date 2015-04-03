@@ -16,11 +16,18 @@ Description: <%= @beer.description %>
   <%= link_to "Edit Beer", edit_beer_path(@beer) %>
 <%-end-%>
 Reviews:
+
+<% if user_signed_in? %>
+  <%= link_to "New Review", new_beer_review_path(@beer) %>
+<% end %>
+
 <% @beer.reviews.order(created_at: :desc).each do |review| %>
   <div class="panel">
     <% if user_signed_in? && review.amendable?(current_user) %>
     <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
+
     <%= link_to "Delete Review", review_path(review), method: :delete %>
+
     <% end %>
     <div>
       <%= image_tag(review.user.avatar)%>
@@ -28,12 +35,26 @@ Reviews:
     <div>
       Rating: <%= review.rating %>
     </div>
+
     <div>
       Description: <%= review.description %>
     </div>
+    <div>
+      Beers on the wall: <%= review.upvotes_count %>
+    </div>
+
+    <div>
+      Beers off the wall: <%= review.downvotes_count %>
+    </div>
+
+    <div class="upvote">
+      <%= link_to "Up", review_upvotes_path(review), method: :post %>
+    </div>
+
+    <div class="downvote">
+      <%= link_to "Down", review_downvotes_path(review), method: :post %>
+    </div>
+
   </div>
 <% end %>
 
-<% if user_signed_in? %>
-  <%= link_to "New Review", new_beer_review_path(@beer) %>
-<% end %>
