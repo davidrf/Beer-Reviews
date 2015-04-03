@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :reviews
   has_many :beers
+  has_many :upvotes
+  has_many :downvotes
 
   def admin?
     role == "admin"

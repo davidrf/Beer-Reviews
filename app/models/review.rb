@@ -1,6 +1,8 @@
 class Review < ActiveRecord::Base
   belongs_to :beer
   belongs_to :user
+  has_many :upvotes
+  has_many :downvotes
 
   validates :rating, numericality: {
     only_integer: true,
@@ -14,4 +16,22 @@ class Review < ActiveRecord::Base
   def owner?(logged_in_user)
     user == logged_in_user
   end
+
+  def has_voted(user)
+    if downvotes.find_by(user_id: user)
+      downvotes.find_by(user_id: user).destroy
+    elsif upvotes.find_by(user_id: user)
+      upvotes.find_by(user_id: user).destroy
+    end
+  end
+
+
+  # def voter_has_downvoted?(user)
+  #   downvotes.find_by(user_id: user)
+  # end
+
+  # def voter_has_upvoted?(user)
+  #   upvotes.find_by(user_id: user)
+  # end
 end
+
