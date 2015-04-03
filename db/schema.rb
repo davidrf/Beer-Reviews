@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402133930) do
-
+ActiveRecord::Schema.define(version: 20150403193647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,14 +36,14 @@ ActiveRecord::Schema.define(version: 20150402133930) do
   add_index "downvotes", ["user_id", "review_id"], name: "index_downvotes_on_user_id_and_review_id", unique: true, using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "rating",          null: false
-    t.text     "description",     null: false
-    t.integer  "user_id",         null: false
-    t.integer  "beer_id",         null: false
+    t.integer  "rating",                      null: false
+    t.text     "description",                 null: false
+    t.integer  "user_id",                     null: false
+    t.integer  "beer_id",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "upvotes_count"
-    t.integer  "downvotes_count"
+    t.integer  "upvotes_count",   default: 0
+    t.integer  "downvotes_count", default: 0
   end
 
   add_index "reviews", ["beer_id"], name: "index_reviews_on_beer_id", using: :btree

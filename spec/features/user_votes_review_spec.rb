@@ -7,13 +7,11 @@ feature "As a user, I want to vote on reviews", %{
 } do
   scenario "successfully upvotes a beer" do
     user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:beer)
-    review = Review.create(rating: 2, description: "This stuff",
-      beer_id: beer.id, user_id: user.id)
+    review = FactoryGirl.create(:review)
 
     visit root_path
     sign_in_as(user)
-    click_link beer.name
+    click_link review.beer.name
     click_link "Up"
 
     expect(page).to have_content("Beers on the wall: 1")
@@ -22,13 +20,12 @@ feature "As a user, I want to vote on reviews", %{
 
   scenario "successfully upvotes a beer" do
     user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:beer)
-    review = Review.create(rating: 2, description: "This stuff",
-      beer_id: beer.id, user_id: user.id)
+    review = FactoryGirl.create(:review)
 
     visit root_path
     sign_in_as(user)
-    click_link beer.name
+    click_link review.beer.name
+    click_link "Up"
     click_link "Down"
 
     expect(page).to have_content("Beers on the wall: 0")

@@ -39,25 +39,21 @@ Reviews:
     <div>
       Description: <%= review.description %>
     </div>
-    <% if review.upvotes_count %>
+    <div>
       Beers on the wall: <%= review.upvotes_count %>
-    <% else %>
-      Beers on the wall: 0
-    <% end %>
+    </div>
 
-    <% if review.downvotes_count %>
+    <div>
       Beers off the wall: <%= review.downvotes_count %>
-    <% else %>
-      Beers off the wall: 0
-    <% end %>
+    </div>
 
-      <div class="upvote">
-        <%= link_to "Up", review_upvotes_path(review), method: :post %>
-      </div>
+    <div class="upvote">
+      <%= link_to "Up", review_upvotes_path(review), method: :post %>
+    </div>
 
-      <div class="downvote">
-        <%= link_to "Down", review_downvotes_path(review), method: :post %>
-      </div>
+    <div class="downvote">
+      <%= link_to "Down", review_downvotes_path(review), method: :post %>
+    </div>
 
   </div>
 <% end %>
