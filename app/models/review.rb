@@ -17,21 +17,11 @@ class Review < ActiveRecord::Base
     user == logged_in_user
   end
 
-  def has_voted(user)
+  def vote_terminator(user)
     if downvotes.find_by(user_id: user)
       downvotes.find_by(user_id: user).destroy
     elsif upvotes.find_by(user_id: user)
       upvotes.find_by(user_id: user).destroy
     end
   end
-
-
-  # def voter_has_downvoted?(user)
-  #   downvotes.find_by(user_id: user)
-  # end
-
-  # def voter_has_upvoted?(user)
-  #   upvotes.find_by(user_id: user)
-  # end
 end
-

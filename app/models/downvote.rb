@@ -10,5 +10,4 @@ class Downvote < ActiveRecord::Base
       review.upvotes.find_by(user_id: user).destroy
     end
   end
-
 end
