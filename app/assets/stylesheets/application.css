@@ -15,3 +15,23 @@
  *= require foundation_and_overrides
 
  */
+
+.contain-to-grid .top-bar {
+  margin: 0;
+  max-width: none;
+}
+
+div.contain-to-grid.sticky,
+nav.top-bar,
+li.has-form,
+.top-bar-section li:not(.has-form) a:not(.button),
+.top-bar-section ul li, .top-bar-section .has-form
+{
+  background-color: #FFCC01;
+}
+
+
+.button:hover, .top-bar-section ul li > a.button:hover {
+  background-color: #0009B2;
+
+}
