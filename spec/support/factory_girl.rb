@@ -17,6 +17,7 @@ FactoryGirl.define do
     user
   end
 
+
   factory :review do
     rating "7"
     sequence(:description) { |n| "I love this beer #{n}" }

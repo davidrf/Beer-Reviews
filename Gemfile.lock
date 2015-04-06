@@ -90,7 +90,7 @@ GEM
     dotenv (2.0.0)
     dotenv-rails (2.0.0)
       dotenv (= 2.0.0)
-          erubis (2.7.0)
+    erubis (2.7.0)
     excon (0.45.1)
     execjs (2.4.0)
     factory_girl (4.5.0)
