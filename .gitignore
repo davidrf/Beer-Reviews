@@ -16,3 +16,4 @@
 /coverage
 /.env
 /public/uploads
+/public/uploads/user/avatar/*/example.jpg

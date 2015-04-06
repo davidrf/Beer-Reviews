@@ -30,7 +30,7 @@
         </div>
         <div class="row">
           <div class="column">
-            <p class="text-left">Description: <%= @beer.description %></p>
+            <p class="text-left"><%= @beer.description %></p>
           </div>
         </div>
       </div>
@@ -45,41 +45,39 @@
       </div>
     </div>
 
-
     <% @beer.reviews.order(created_at: :desc).each do |review| %>
-      <div class="panel">
-        <% if user_signed_in? && review.amendable?(current_user) %>
-        <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
-
-        <%= link_to "Delete Review", review_path(review), method: :delete %>
-
-        <% end %>
-        <div>
+      <div class="row panel">
+        <div class="small-3 columns">
           <%= image_tag(review.user.avatar)%>
         </div>
-        <div>
-          Rating: <%= review.rating %>
+        <div class="small-6 columns">
+          <div class="row">
+            <div class="column">
+              <p>Rating: <%= review.rating %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <p>Description: <%= review.description %></p>
+            </div>
+          </div>
         </div>
-
-        <div>
-          Description: <%= review.description %>
+        <div class="small-3 columns">
+          <div class="upvote">
+            <%= link_to "Up", review_upvotes_path(review), method: :post %>
+          </div>
+          <div>
+            <%= review.upvotes_count %> beer(s) on the wall
+          </div>
+          <div class="downvote">
+            <%= link_to "Down", review_downvotes_path(review), method: :post %>
+          </div>
+          <% if user_signed_in? && review.amendable?(current_user) %>
+            <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
+            <%= link_to "Delete Review", review_path(review), method: :delete %>
+          <% end %>
         </div>
-        <div>
-          Beers on the wall: <%= review.upvotes_count %>
         </div>
-
-        <div>
-          Beers off the wall: <%= review.downvotes_count %>
-        </div>
-
-        <div class="upvote">
-          <%= link_to "Up", review_upvotes_path(review), method: :post %>
-        </div>
-
-        <div class="downvote">
-          <%= link_to "Down", review_downvotes_path(review), method: :post %>
-        </div>
-
       </div>
     <% end %>
   </div>
