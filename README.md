@@ -3,4 +3,4 @@
 
 Our ER Diagram as of March 30, 2015:
 
-![alt](http://imgur.com/dWFbtNy)
+![alt](http://i.imgur.com/dWFbtNy.png)
