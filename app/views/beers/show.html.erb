@@ -1,60 +1,86 @@
-<h1><%= @beer.name %></h1>
-<div>
-  Style: <%= @beer.style.name %>
-</div>
-<div>
-  ABV: <%= @beer.abv %>%
-</div>
-<div>
-  IBU: <%= @beer.ibu %>
-</div>
-<div>
-Description: <%= @beer.description %>
-</div>
-<%-if user_signed_in? && @beer.amendable?(current_user) -%>
-  <%= link_to "Delete Beer", beer_path(@beer), method: :delete %>
-  <%= link_to "Edit Beer", edit_beer_path(@beer) %>
-<%-end-%>
-Reviews:
+<div class="row">
+  <div class="column">
 
-<% if user_signed_in? %>
-  <%= link_to "New Review", new_beer_review_path(@beer) %>
-<% end %>
+    <div class="row">
+      <div class="small-3 columns">
+        <%= image_tag("fallback/default.jpg") %>
+        <%-if user_signed_in? && @beer.amendable?(current_user) -%>
+          <ul class="button-group round even-2">
+            <li><%= link_to "Delete Beer", beer_path(@beer), method: :delete, class: "button tiny" %></li>
+            <li><%= link_to "Edit Beer", edit_beer_path(@beer), class: "button tiny" %></li>
+          </ul>
+        <%-end-%>
+      </div>
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="column">
+            <h1><%= @beer.name %></h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-4 columns">
+            <p>Style: <%= @beer.style.name %></p>
+          </div>
+          <div class="small-4 columns">
+            <p>ABV: <%= @beer.abv %></p>
+          </div>
+          <div class="small-4 columns">
+            <p>IBU: <%= @beer.ibu %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <p class="text-left">Description: <%= @beer.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<% @beer.reviews.order(created_at: :desc).each do |review| %>
-  <div class="panel">
-    <% if user_signed_in? && review.amendable?(current_user) %>
-    <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
+    <div class="row">
+      <div class="column">
+        <% if user_signed_in? %>
+          <%= link_to "New Review", new_beer_review_path(@beer) %>
+        <% end %>
+        Reviews:
+      </div>
+    </div>
 
-    <%= link_to "Delete Review", review_path(review), method: :delete %>
 
+    <% @beer.reviews.order(created_at: :desc).each do |review| %>
+      <div class="panel">
+        <% if user_signed_in? && review.amendable?(current_user) %>
+        <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
+
+        <%= link_to "Delete Review", review_path(review), method: :delete %>
+
+        <% end %>
+        <div>
+          <%= image_tag(review.user.avatar)%>
+        </div>
+        <div>
+          Rating: <%= review.rating %>
+        </div>
+
+        <div>
+          Description: <%= review.description %>
+        </div>
+        <div>
+          Beers on the wall: <%= review.upvotes_count %>
+        </div>
+
+        <div>
+          Beers off the wall: <%= review.downvotes_count %>
+        </div>
+
+        <div class="upvote">
+          <%= link_to "Up", review_upvotes_path(review), method: :post %>
+        </div>
+
+        <div class="downvote">
+          <%= link_to "Down", review_downvotes_path(review), method: :post %>
+        </div>
+
+      </div>
     <% end %>
-    <div>
-      <%= image_tag(review.user.avatar)%>
-    </div>
-    <div>
-      Rating: <%= review.rating %>
-    </div>
-
-    <div>
-      Description: <%= review.description %>
-    </div>
-    <div>
-      Beers on the wall: <%= review.upvotes_count %>
-    </div>
-
-    <div>
-      Beers off the wall: <%= review.downvotes_count %>
-    </div>
-
-    <div class="upvote">
-      <%= link_to "Up", review_upvotes_path(review), method: :post %>
-    </div>
-
-    <div class="downvote">
-      <%= link_to "Down", review_downvotes_path(review), method: :post %>
-    </div>
-
   </div>
-<% end %>
-
+</div>
