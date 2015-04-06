@@ -6,7 +6,7 @@ feature "As a user, I want to search for a beer", %{
 } do
   scenario "successfully search for a brew" do
     beer = FactoryGirl.create(:beer)
-    beer2 = FactoryGirl.create(:beer, name: "Piss")
+    beer2 = FactoryGirl.create(:beer, name: "PBR")
 
     visit root_path
     fill_in "search-bar", with: beer.name
@@ -21,5 +21,6 @@ feature "As a user, I want to search for a beer", %{
     click_button "Search"
 
     expect(page).to have_content("No Matching Beer")
+    expect(page).to_not have_content("words")
   end
 end

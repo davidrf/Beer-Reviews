@@ -4,7 +4,7 @@ class BeersController < ApplicationController
   def index
     if params[:query]
       @beers = Beer.search(params[:query])
-      flash.now[:notice] = @beers.beer_exist?
+      flash.now[:notice] = @beers.search_message
     else
       @beers = Beer.page(params[:page]).order(:name)
     end

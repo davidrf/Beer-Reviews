@@ -13,9 +13,12 @@ class Beer < ActiveRecord::Base
     where("name ilike ?", "%#{query}%")
   end
 
-  def self.beer_exist?
-    if self.count == 0
+  def self.search_message
+    count = self.count
+    if count == 0
       "No Matching Beer"
+    else
+      "#{count} beer(s) matched your search"
     end
   end
 end
