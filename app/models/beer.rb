@@ -10,7 +10,7 @@ class Beer < ActiveRecord::Base
   validates :description, length: { maximum: 5000 }
 
   def self.search(query)
-  where("name ilike ?", "%#{query}%")
+    where("name ilike ?", "%#{query}%")
   end
 
   def self.beer_exist?

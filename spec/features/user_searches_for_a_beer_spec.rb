@@ -11,19 +11,15 @@ feature "As a user, I want to search for a beer", %{
     visit root_path
     fill_in "search-bar", with: beer.name
     click_button "Search"
-    save_and_open_page
     expect(page).to have_content(beer.name)
     expect(page).to_not have_content(beer2.name)
-
   end
 
   scenario "unsuccessfully searches for a brew" do
-
     visit root_path
     fill_in "search-bar", with: "words"
     click_button "Search"
 
     expect(page).to have_content("No Matching Beer")
-
   end
 end
