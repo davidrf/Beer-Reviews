@@ -2,7 +2,12 @@ class BeersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @beers = Beer.page(params[:page]).order(:name)
+    if params[:query]
+      @beers = Beer.search(params[:query])
+      flash.now[:notice] = @beers.search_message
+    else
+      @beers = Beer.page(params[:page]).order(:name)
+    end
   end
 
   def show
