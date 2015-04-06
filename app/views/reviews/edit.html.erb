@@ -1,0 +1,27 @@
+<% if @review.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+  <ul>
+    <% @review.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_for [@beer, @review], url: beer_review_path do |f| %>
+<div class="review">
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select(1..10) %>
+</div>
+
+<div class="review">
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</div>
+
+<div class="post">
+  <%= f.submit "Update Review" %>
+</div>
+
+<% end %>
