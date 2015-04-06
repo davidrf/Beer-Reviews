@@ -3,15 +3,16 @@ class BeersController < ApplicationController
 
   def index
     if params[:query]
-      @beers = Beer.search(params[:query])
+      @beers = Beer.page(params[:page]).per(15).search(params[:query])
       flash.now[:notice] = @beers.search_message
     else
-      @beers = Beer.page(params[:page]).order(:name)
+      @beers = Beer.page(params[:page]).per(15).order(:name)
     end
   end
 
   def show
     @beer = Beer.find(params[:id])
+    @reviews = @beer.reviews.page(params[:page]).per(15)
   end
 
   def new

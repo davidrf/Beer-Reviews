@@ -21,7 +21,7 @@ Reviews:
   <%= link_to "New Review", new_beer_review_path(@beer) %>
 <% end %>
 
-<% @beer.reviews.order(created_at: :desc).each do |review| %>
+<% @reviews.order(created_at: :desc).each do |review| %>
   <div class="panel">
     <% if user_signed_in? && review.amendable?(current_user) %>
     <%= link_to "Edit Review", edit_beer_review_path(@beer, review) %>
@@ -57,4 +57,7 @@ Reviews:
 
   </div>
 <% end %>
+
+<%= paginate @reviews %>
+<%= page_entries_info @reviews %>
 
