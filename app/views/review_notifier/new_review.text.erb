@@ -1,5 +1,6 @@
-To our dearest beer enthusiast, <%= @review.beer.user.first_name %>,
+To our dearest beer enthusiast,
 
-  <%= @review.user.full_name %> has left a review on your entry, <%= link_to @review.beer.name %>.
+  Someone has left a review on your entry, <%= link_to @review.beer.name, beer_path(@review.beer) %>.
 
 Stay thirsty my friend!
+

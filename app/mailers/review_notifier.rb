@@ -5,7 +5,7 @@ class ReviewNotifier < ApplicationMailer
     @review = review
 
     mail(
-      to: review.product.user.email,
-      subject: "New Review for #{review.product.name}")
+      to: review.beer.user.email,
+      subject: "New Review for #{review.beer.name}")
   end
 end
