@@ -59,15 +59,17 @@
           </div>
         </div>
         <div class="small-3 columns">
-          <div class="upvote">
-            <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post %>
-          </div>
-          <div>
-            <%= review.upvotes_count %> beer(s) on the wall
-          </div>
-          <div class="downvote">
-            <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="upvote">
+              <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post, id: "upvote" %>
+            </div>
+            <div>
+              <%= review.upvotes_count %> beer(s) on the wall
+            </div>
+            <div class="downvote">
+              <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post, id: "downvote" %>
+            </div>
+          <% end %>
           <% if user_signed_in? && review.amendable?(current_user) %>
             <ul class="button-group  stack">
               <li><%= link_to "Edit Review", edit_beer_review_path(@beer, review), class: "radius button tiny" %></li>

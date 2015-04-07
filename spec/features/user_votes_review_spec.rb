@@ -12,23 +12,21 @@ feature "As a user, I want to vote on reviews", %{
     visit root_path
     sign_in_as(user)
     click_link review.beer.name
-    click_link "Up"
+    find("#upvote").click
 
-    expect(page).to have_content("Beers on the wall: 1")
-    expect(page).to have_content("Beers off the wall: 0")
+    expect(page).to have_content("1 beer(s) on the wall")
   end
 
-  scenario "successfully upvotes a beer" do
+  scenario "successfully downvotes a beer" do
     user = FactoryGirl.create(:user)
     review = FactoryGirl.create(:review)
 
     visit root_path
     sign_in_as(user)
     click_link review.beer.name
-    click_link "Up"
-    click_link "Down"
+    find("#upvote").click
+    find("#downvote").click
 
-    expect(page).to have_content("Beers on the wall: 0")
-    expect(page).to have_content("Beers off the wall: 1")
+    expect(page).to have_content("0 beer(s) on the wall")
   end
 end
