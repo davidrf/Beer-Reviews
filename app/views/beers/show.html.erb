@@ -8,7 +8,7 @@
       <div class="small-9 columns">
         <div class="row">
           <div class="small-6 columns">
-            <h1><%= @beer.name %></h1>
+            <h1 class="white-text"><%= @beer.name %></h1>
           </div>
           <div class="small-6 columns" id="show-buttons">
             <%-if user_signed_in? && @beer.amendable?(current_user) -%>
@@ -24,18 +24,18 @@
         </div>
         <div class="row">
           <div class="small-4 columns">
-            <p>Style: <%= @beer.style.name %></p>
+            <p class="white-text">Style: <%= @beer.style.name %></p>
           </div>
           <div class="small-4 columns">
-            <p>ABV: <%= @beer.abv %></p>
+            <p class="white-text">ABV: <%= @beer.abv %></p>
           </div>
           <div class="small-4 columns">
-            <p>IBU: <%= @beer.ibu %></p>
+            <p class="white-text">IBU: <%= @beer.ibu %></p>
           </div>
         </div>
         <div class="row">
           <div class="column">
-            <p class="text-left"><%= @beer.description %></p>
+            <p class="text-left white-text"><%= @beer.description %></p>
           </div>
         </div>
       </div>
