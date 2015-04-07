@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
     @review.beer = @beer
     @review.user = current_user
     if @review.save
+      ReviewNotifier.new_review(@review).deliver_later
       flash[:notice] = "Review Saved"
       redirect_to beer_path(@beer)
     else
