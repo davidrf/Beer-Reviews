@@ -1,7 +1,19 @@
-<h1>Beers</h1>
-<% @beers.each do |beer| %>
-  <li><%= link_to beer.name, beer_path(beer) %></li>
-<% end %>
+<div class="row">
+  <%= image_tag "landing.jpg" %>
+</div>
+
+<div class="row">
+  <% @beers.each do |beer| %>
+    <div class="large-4 small-6 columns">
+      <%= link_to image_tag("fallback/default.jpg"), beer_path(beer), class: 'image-link' %>
+      <div class="panel">
+        <h5>  <%= link_to beer.name, beer_path(beer) %></h5>
+        <h6 class="subheader">Brewery: </h6>
+        <h6 class="subheader">Rating: </h6>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <%= paginate @beers %>
 <%= page_entries_info @beers %>
-
