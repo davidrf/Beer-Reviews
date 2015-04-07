@@ -8,4 +8,17 @@ class Beer < ActiveRecord::Base
   validates :style, presence: true
   validates :user, presence: true
   validates :description, length: { maximum: 5000 }
+
+  def self.search(query)
+    where("name ilike ?", "%#{query}%")
+  end
+
+  def self.search_message
+    count = self.count
+    if count == 0
+      "No Matching Beer"
+    else
+      "#{count} beer(s) matched your search"
+    end
+  end
 end
