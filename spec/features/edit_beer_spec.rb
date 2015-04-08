@@ -23,14 +23,14 @@ feature "edit beer information", %{
     fill_in "Name", with: "Edited Beer"
     fill_in "ABV", with: "50"
     fill_in "IBU", with: "100"
-    select "Lager", from: "Style"
+    select beer.style.name, from: "Style"
     click_button "Submit Beer"
 
     expect(page).to have_content("Beer Information Updated")
     expect(page).to have_content("Edited Beer")
     expect(page).to have_content("50")
     expect(page).to have_content("100")
-    expect(page).to have_content("Lager")
+    expect(page).to have_content(beer.style.name)
   end
 
   scenario "required fields not filled in" do

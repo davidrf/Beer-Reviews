@@ -1,4 +1,10 @@
 class BreweriesController < ApplicationController
-  before_action :authenticate_user!
+  def index
+    @breweries = Brewery.page(params[:page]).per(15).order(:name)
+  end
 
+  def show
+    @brewery = Brewery.find(params[:id])
+    @beers = @brewery.beers.page(params[:page]).per(15)
+  end
 end
