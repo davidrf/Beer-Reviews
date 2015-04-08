@@ -30,6 +30,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'carrierwave_direct'
 gem 'fog'
+gem 'mini_magick'
 
 group :test do
   gem 'coveralls', require: false

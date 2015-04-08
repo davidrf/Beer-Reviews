@@ -15,3 +15,15 @@
  *= require foundation_and_overrides
 
  */
+
+div.contain-to-grid.sticky,
+nav.top-bar,
+li.has-form,
+.top-bar-section li:not(.has-form) a:not(.button)
+{
+  background-color: #FFCC01;
+}
+
+.top-bar-section ul li, .top-bar-section .has-form {
+  background-color: #FFCC01;
+}

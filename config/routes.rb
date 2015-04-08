@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :beers do
     resources :reviews, only: [:new, :create, :edit, :update]
+    resources :breweries, only: [:show]
   end
 
   resources :reviews, only: [:destroy]
+
 end

@@ -1,7 +1,7 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+class BeerUploader < CarrierWave::Uploader::Base
   #include CarrierWave::MiniMagick
 
-  #process resize_to_fit: [200, 200]
+  #process resize_to_fit: [800, 800]
 
   if Rails.env.production? || Rails.env.development?
     storage :fog
@@ -14,6 +14,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/default.jpg")
+    ActionController::Base.helpers.asset_path("fallback/empty.jpg")
   end
 end

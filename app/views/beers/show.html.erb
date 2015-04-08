@@ -1,6 +1,12 @@
 <h1><%= @beer.name %></h1>
 <div>
+  <%= image_tag(@beer.image) %>
+</div>
+<div>
   Style: <%= @beer.style.name %>
+</div>
+<div>
+  Brewery: <%= @beer.brewery.name %>
 </div>
 <div>
   ABV: <%= @beer.abv %>%
