@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :beers do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  resources :styles, only: [:index, :show]
 end

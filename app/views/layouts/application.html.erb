@@ -34,6 +34,9 @@
                   </div>
                 </li>
               </ul>
+              <ul>
+                <li><%= link_to "Styles", styles_path,  class: "button radius" %></li>
+              </ul>
               <ul class="right">
                 <%- if current_user -%>
                   <li><%= link_to 'Add Beer', new_beer_path, class: "button radius" %></li>
@@ -48,7 +51,7 @@
         </div>
 
     <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
+      <div class="flash-message">
         <%= value %>
       </div>
     <%- end -%>
