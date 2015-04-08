@@ -17,8 +17,6 @@ class Beer < ActiveRecord::Base
     count = self.count
     if count == 0
       "No Matching Beer"
-    else
-      "#{count} beer(s) matched your search"
     end
   end
 end
