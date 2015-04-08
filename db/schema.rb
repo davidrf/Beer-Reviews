@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403193647) do
+ActiveRecord::Schema.define(version: 20150408170345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,24 @@ ActiveRecord::Schema.define(version: 20150403193647) do
     t.text    "description"
     t.integer "style_id",    null: false
     t.integer "user_id",     null: false
+    t.integer "brewery_id"
+    t.string  "image"
   end
 
-  add_index "beers", ["name"], name: "index_beers_on_name", unique: true, using: :btree
+  add_index "beers", ["brewery_id"], name: "index_beers_on_brewery_id", using: :btree
+  add_index "beers", ["name", "brewery_id"], name: "index_beers_on_name_and_brewery_id", unique: true, using: :btree
   add_index "beers", ["style_id"], name: "index_beers_on_style_id", using: :btree
+
+  create_table "breweries", force: :cascade do |t|
+    t.string  "name",        null: false
+    t.string  "city"
+    t.string  "state"
+    t.string  "country"
+    t.string  "description"
+    t.integer "year"
+  end
+
+  add_index "breweries", ["name"], name: "index_breweries_on_name", unique: true, using: :btree
 
   create_table "downvotes", force: :cascade do |t|
     t.integer "user_id",   null: false
