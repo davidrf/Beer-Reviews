@@ -8,7 +8,7 @@ class Beer < ActiveRecord::Base
   belongs_to :brewery
   belongs_to :user
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :brewery }
   validates :style, presence: true
   validates :brewery, presence: true
   validates :user, presence: true
