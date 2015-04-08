@@ -21,8 +21,8 @@ feature "edit beer information", %{
     click_link "Edit Beer"
 
     fill_in "Name", with: "Edited Beer"
-    fill_in "Abv", with: "50"
-    fill_in "Ibu", with: "100"
+    fill_in "ABV", with: "50"
+    fill_in "IBU", with: "100"
     select "Lager", from: "Style"
     click_button "Submit Beer"
 
