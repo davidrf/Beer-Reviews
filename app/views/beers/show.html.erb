@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="review_box">
       <div class="column">
         <% @beer.reviews.order(created_at: :desc).each do |review| %>
           <div class="row panel">
@@ -50,13 +50,13 @@
             </div>
             <div class="small-6 columns">
               <div class="row">
-                <div class="column">
-                  <p>Rating: <%= review.rating %>/10</p>
+                <div class="column" id="rating<%= review.id %>">
+                  <p class="review_item<%= review.id %>" id="review_rating<%= review.id %>">Rating: <%= review.rating %>/10</p>
                 </div>
               </div>
               <div class="row">
-                <div class="column">
-                  <p><%= review.description %></p>
+                <div class="column" id="description<%= review.id %>">
+                  <p class="review_item<%= review.id %>" id="review_description<%= review.id %>"><%= review.description %></p>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@
               <% end %>
               <% if user_signed_in? && review.amendable?(current_user) %>
                 <ul class="button-group  stack">
-                  <li><%= link_to "Edit Review", edit_beer_review_path(@beer, review), class: "radius button tiny" %></li>
+                  <li><%= link_to "Edit Review", edit_beer_review_path(@beer, review), class: "radius button tiny edit_button" %></li>
                   <li><%= link_to "Delete Review", review_path(review), method: :delete, class: "radius button tiny" %></li>
                 </ul>
               <% end %>
@@ -83,7 +83,6 @@
         <% end %>
       </div>
     </div>
-
   </div>
 </div>
 

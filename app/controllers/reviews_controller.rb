@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  respond_to :html, :json, only: :update
 
   def new
     @review = Review.new
@@ -29,7 +30,10 @@ class ReviewsController < ApplicationController
     @beer = @review.beer
     if @review.update(review_params)
       flash[:notice] = "Your review has been updated!"
-      redirect_to beer_path(@beer)
+      respond_to do |format|
+        format.html { redirect_to beer_path(@beer) }
+        format.json { render json: @review }
+      end
     else
       flash[:notice] = "Review not updated"
       render :edit
