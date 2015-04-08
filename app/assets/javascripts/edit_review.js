@@ -17,7 +17,9 @@ $(".edit_button").click(function (event) {
     $("#edit_description" + ReviewId).remove();
     $("#edit_rating" + ReviewId).remove();
     $(".column#rating" + ReviewId).append(ReloadRating(NewRating, ReviewId));
-    $(".column#description" + ReviewId).append(ReloadDescription(NewDescription, ReviewId));
+    $(".column#description" + ReviewId).append(ReloadDescription(
+      NewDescription, ReviewId
+    ));
     this.text = "Edit Review";
     $.ajax({
       type: "PUT",
@@ -29,7 +31,8 @@ $(".edit_button").click(function (event) {
 });
 
 function SelectBox(value, id){
-  var html = "<select class='.review_item" + id + "' id='edit_rating" + id + "'>";
+  var html = "<select class='.review_item" + id;
+  html += "' id='edit_rating" + id + "'>";
   for (var i = 1; i < 11; i++) {
     if (Number(value) === i) {
       html += "<option value ='" + i + "' selected>" + i + "</option>";
@@ -39,22 +42,22 @@ function SelectBox(value, id){
   }
   html += "</select>";
   return html;
-};
+}
 
 function TextBox(details, id){
   var html = "<textarea class='.review_item" + id;
   html += "' id='edit_description" + id + "'>" + details + "</textarea>";
   return html;
-};
+}
 
 function ReloadRating(NewRating, id){
   var html = "<p class='review_item" + id + "' id= 'review_rating" + id + "'>";
   html += "Rating: " + NewRating + "/10</p>";
   return html;
-};
+}
 
 function ReloadDescription(NewDescription, id){
-  var html = "<p class='review_item" + id + "' id= 'review_description" + id + "'>";
-  html += NewDescription + "</p>";
+  var html = "<p class='review_item" + id;
+  html += "' id= 'review_description" + id + "'>" + NewDescription + "</p>";
   return html;
-};
+}
