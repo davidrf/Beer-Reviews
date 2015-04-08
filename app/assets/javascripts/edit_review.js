@@ -14,8 +14,7 @@ $(".edit_button").click(function (event) {
   } else {
     var NewRating = $("#edit_rating" + ReviewId).val();
     var NewDescription = $("#edit_description" + ReviewId).val();
-    $("#edit_description" + ReviewId).remove();
-    $("#edit_rating" + ReviewId).remove();
+    $(".review_item" + ReviewId).remove();
     $(".column#rating" + ReviewId).append(reloadRating(NewRating, ReviewId));
     $(".column#description" + ReviewId).append(reloadDescription(
       NewDescription, ReviewId
@@ -31,7 +30,7 @@ $(".edit_button").click(function (event) {
 });
 
 function selectBox(value, id){
-  var html = "<select class='.review_item" + id;
+  var html = "<select class='review_item" + id;
   html += "' id='edit_rating" + id + "'>";
   for (var i = 1; i < 11; i++) {
     if (Number(value) === i) {
@@ -45,7 +44,7 @@ function selectBox(value, id){
 }
 
 function textBox(details, id){
-  var html = "<textarea class='.review_item" + id;
+  var html = "<textarea class='review_item" + id;
   html += "' id='edit_description" + id + "'>" + details + "</textarea>";
   return html;
 }
