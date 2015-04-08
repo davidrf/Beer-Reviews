@@ -16,14 +16,39 @@
 
  */
 
+ @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+ *, h1 , h2, h3, h4, h5, h6 {
+   font-family: 'Bree Serif', serif;
+}
+
+ body {
+  background-image: url("background.jpg");
+  background-size:   cover;
+ }
+
+.contain-to-grid .top-bar {
+  margin: 0;
+  max-width: none;
+}
+
 div.contain-to-grid.sticky,
 nav.top-bar,
 li.has-form,
-.top-bar-section li:not(.has-form) a:not(.button)
+.top-bar-section li:not(.has-form) a:not(.button),
+.top-bar-section ul li, .top-bar-section .has-form
 {
   background-color: #FFCC01;
 }
 
-.top-bar-section ul li, .top-bar-section .has-form {
-  background-color: #FFCC01;
+.button:hover, .top-bar-section ul li > a.button:hover {
+  background-color: #0009B2;
+}
+
+#show-buttons {
+  margin-top: 1.2em;
+}
+
+.white-text {
+  color: #FFFFFF;
 }

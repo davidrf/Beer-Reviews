@@ -1,60 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>GroupProject</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beer Reviews</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <div class="contain-to-grid sticky">
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Brewviews</a></h1>
-        </li>
-      </ul>
+  <body>
+        <div class="contain-to-grid sticky">
+          <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="/">Home</a></h1>
+              </li>
+            </ul>
+            <section class="top-bar-section">
+              <ul class="left">
+                <li class="has-form">
+                  <div class="row collapse">
+                    <form id="search_form" action="/beers" method="get">
+                      <div class="row">
+                        <div class="large-8 small-9 columns">
+                          <input id="search-bar" type="text" name="query" placeholder="Find Beer">
+                        </div>
+                        <div class="large-4 small-3 columns">
+                          <input type="submit" value="Search" class="button">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </li>
+              </ul>
+              <ul class="right">
+                <%- if current_user -%>
+                  <li><%= link_to 'Add Beer', new_beer_path, class: "button radius" %></li>
+                  <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete,  class: "button radius" %></li>
+                <%- else -%>
+                  <li><%= link_to 'Sign Up', new_user_registration_path,  class: "button radius" %></li>
+                  <li><%= link_to 'Sign In', new_user_session_path,  class: "button radius" %></li>
+                <%- end -%>
+              </ul>
+            </section>
+          </nav>
+        </div>
 
-    <section class="top-bar-section">
-      <ul class="left">
-        <li class="has-form">
-          <div class="row collapse">
-            <div class="large-8 small-9 columns">
-              <form id="search_form" action="/" method="get">
-                <input type="text" name="query" placeholder="Find Beer">
-              </form>
-            </div>
-            <div class="large-4 small-3 columns">
-              <a href="#" onclick="document.getElementById('search_form').submit()" class="alert button expand">Search</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <ul class="right">
-        <%- if current_user -%>
-          <li class="Add"><%= link_to 'Add Beer', new_beer_path %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
-</div>
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+    <%- end -%>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
-  <div class="row">
-    <div class="column">
-      <%= yield %>
-    </div>
-  </div>
+    <%= yield %>
 
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
-</body>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+  </body>
 </html>
