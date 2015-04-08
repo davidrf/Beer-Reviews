@@ -337,7 +337,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  CFPropertyList
   byebug
   capybara
   carrierwave

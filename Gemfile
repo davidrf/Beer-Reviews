@@ -32,7 +32,6 @@ gem 'carrierwave'
 gem 'carrierwave_direct'
 gem 'fog'
 gem 'mini_magick'
-gem 'CFPropertyList'
 
 group :test do
   gem 'coveralls', require: false
