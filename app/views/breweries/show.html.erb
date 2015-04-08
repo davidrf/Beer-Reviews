@@ -1,0 +1,5 @@
+<h1 class="brewery-name"><%= @brewery.name %></h1>
+<h6 class="brewery-details">Established: <%= @brewery.year %></h6>
+<h6 class="brewery-details">Location: <%= @brewery.city %>, <%= @brewery.state %> <%= @brewery.country %></h6>
+<h6 class="brewery-details"><%= @brewery.description %></h6>
+<%= render "beers/beer_index" %>

@@ -51,3 +51,32 @@ li.has-form,
 .white-text {
   color: #FFFFFF;
 }
+
+.brewery-title {
+  color: #FFFFFF;
+}
+
+.brewery-name {
+  color: #FFFFFF;
+}
+
+.brewery-details {
+  color: #FFFFFF
+}
+.style-title {
+  color: #FFFFFF;
+}
+
+.style-name {
+  color: #FFFFFF;
+}
+
+.flash-message {
+  color: #FFFFFF;
+}
+
+.pagination {
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+}

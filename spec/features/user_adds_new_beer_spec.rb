@@ -19,7 +19,7 @@ feature 'user posts new beer', %{
     click_link 'Add Beer'
 
     fill_in 'Name', with: beer.name
-    select "Lager", from: "Style"
+    select beer.style.name, from: "Style"
     click_button 'Submit Beer'
 
     expect(page).to have_content(beer.name)
