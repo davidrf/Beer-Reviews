@@ -14,6 +14,7 @@ FactoryGirl.define do
     ibu 60
     description "Super hoppy goodness"
     style
+    brewery
     user
   end
 
@@ -26,5 +27,13 @@ FactoryGirl.define do
 
   factory :style do
     sequence(:name) { |n| "IPA #{n}" }
+  end
+
+  factory :brewery do
+    sequence(:name) { |n| "Victory Brewing Company #{n}" }
+    city "Downingtown"
+    state "PA"
+    country "United States"
+    description "One of my favorites"
   end
 end

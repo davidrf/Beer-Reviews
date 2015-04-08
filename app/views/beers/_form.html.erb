@@ -15,20 +15,28 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :brewery_id %><br>
+    <%= f.select :brewery_id, Brewery.all.map { |b| [b.name, b.id] } %>
+  </div>
+  <div class="field">
     <%= f.label :style_id %><br>
     <%= f.select :style_id, Style.all.map { |s| [s.name, s.id] } %>
   </div>
   <div class="field">
-    <%= f.label :abv %><br>
+    <%= f.label :abv, 'ABV' %><br>
     <%= f.text_field :abv %>
   </div>
   <div class="field">
-    <%= f.label :ibu %><br>
+    <%= f.label :ibu, 'IBU' %><br>
     <%= f.text_field :ibu %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image, 'Image' %><br>
+    <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit "Submit Beer" %>

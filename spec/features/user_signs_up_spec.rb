@@ -45,7 +45,7 @@ feature 'user registers', %{
     click_button 'Sign up'
 
     expect(page).to have_content('Welcome! You have signed up successfully.')
-    expect(User.first.avatar.file.filename).to eq('example.jpg')
+    expect(User.last.avatar.file.filename).to eq('example.jpg')
   end
 
   scenario 'no avatar chosen' do
