@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :styles, only: [:index, :show]
+
+  resources :breweries, only: [:index, :show]
 end

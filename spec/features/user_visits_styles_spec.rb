@@ -8,7 +8,6 @@ feature "As a user, I want to view beers by style", %{
     visit root_path
     click_link "Styles"
     click_link beer.style.name
-
     expect(page).to have_content(beer.name)
   end
 
