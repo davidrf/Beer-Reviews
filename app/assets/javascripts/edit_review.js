@@ -8,16 +8,16 @@ $(".edit_button").click(function (event) {
     var rating = RatingString[RatingString.length - 1][0];
 
     $(".review_item" + ReviewId).remove();
-    $(".column#rating" + ReviewId).append(SelectBox(rating, ReviewId));
-    $(".column#description" + ReviewId).append(TextBox(description, ReviewId));
+    $(".column#rating" + ReviewId).append(selectBox(rating, ReviewId));
+    $(".column#description" + ReviewId).append(textBox(description, ReviewId));
     this.text = "Resubmit Review";
   } else {
     var NewRating = $("#edit_rating" + ReviewId).val();
     var NewDescription = $("#edit_description" + ReviewId).val();
     $("#edit_description" + ReviewId).remove();
     $("#edit_rating" + ReviewId).remove();
-    $(".column#rating" + ReviewId).append(ReloadRating(NewRating, ReviewId));
-    $(".column#description" + ReviewId).append(ReloadDescription(
+    $(".column#rating" + ReviewId).append(reloadRating(NewRating, ReviewId));
+    $(".column#description" + ReviewId).append(reloadDescription(
       NewDescription, ReviewId
     ));
     this.text = "Edit Review";
@@ -30,7 +30,7 @@ $(".edit_button").click(function (event) {
   }
 });
 
-function SelectBox(value, id){
+function selectBox(value, id){
   var html = "<select class='.review_item" + id;
   html += "' id='edit_rating" + id + "'>";
   for (var i = 1; i < 11; i++) {
@@ -44,19 +44,19 @@ function SelectBox(value, id){
   return html;
 }
 
-function TextBox(details, id){
+function textBox(details, id){
   var html = "<textarea class='.review_item" + id;
   html += "' id='edit_description" + id + "'>" + details + "</textarea>";
   return html;
 }
 
-function ReloadRating(NewRating, id){
+function reloadRating(NewRating, id){
   var html = "<p class='review_item" + id + "' id= 'review_rating" + id + "'>";
   html += "Rating: " + NewRating + "/10</p>";
   return html;
 }
 
-function ReloadDescription(NewDescription, id){
+function reloadDescription(NewDescription, id){
   var html = "<p class='review_item" + id;
   html += "' id= 'review_description" + id + "'>" + NewDescription + "</p>";
   return html;
