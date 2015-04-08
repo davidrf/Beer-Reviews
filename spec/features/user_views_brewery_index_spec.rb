@@ -10,7 +10,6 @@ feature 'user views index of breweries', %{
 
     visit root_path
     click_link "Breweries"
-    save_and_open_page
 
     expect(page).to have_content(brewery.name)
   end
