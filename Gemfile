@@ -25,14 +25,14 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
 end
 
-
 gem 'devise'
 gem 'foundation-rails'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'carrierwave_direct'
 gem 'fog'
-gem 'CFPropertyList'
+gem 'mini_magick'
+
 group :test do
   gem 'coveralls', require: false
 end
