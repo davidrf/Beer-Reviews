@@ -15,6 +15,18 @@ feature "As a user, I want to search for a beer", %{
     expect(page).to_not have_content(beer2.name)
   end
 
+  scenario "successfully search for a style" do
+    beer = FactoryGirl.create(:beer)
+    beer2 = FactoryGirl.create(:beer, name: "Foobar")
+
+    visit root_path
+    fill_in "search-bar", with: beer.style.name
+    click_button "Search"
+
+    expect(page).to have_content(beer.name)
+    expect(page).to_not have_content(beer2.name)
+  end
+
   scenario "unsuccessfully searches for a brew" do
     visit root_path
     fill_in "search-bar", with: "words"
