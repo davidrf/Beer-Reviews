@@ -1,5 +1,9 @@
-<h1>Edit Beer</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', beer_path(@beer) %>
+<div class="row">
+  <div class="column">
+    <fieldset>
+      <legend id="legend">Edit Beer</legend>
+        <%= render 'form' %>
+      </fieldset>
+      <%= link_to 'Back', beer_path(@beer) %>
+  </div>
+</div>

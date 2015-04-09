@@ -21,7 +21,7 @@ feature "User edits review", %{
     click_link "Edit Review"
     fill_in "Description", with: "I really like this beer"
     select "8", from: "Rating"
-    click_button "Update Review"
+    click_button "Submit Review"
 
     expect(page).to have_content("Your review has been updated!")
   end
@@ -36,7 +36,7 @@ feature "User edits review", %{
     click_link beer.name
     click_link "Edit Review"
     fill_in "Description", with: ""
-    click_button "Update Review"
+    click_button "Submit Review"
 
     expect(page).to have_content("Description can't be blank")
   end
