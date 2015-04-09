@@ -1,7 +1,7 @@
 class BeerUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
-
-  process resize_to_fit: [800, 800]
+  # include CarrierWave::MiniMagick
+  #
+  # process resize_to_fit: [800, 800]
 
   if Rails.env.production? || Rails.env.development?
     storage :fog

@@ -1,0 +1,25 @@
+fieldset legend#beer-legend {
+  background: none;
+  color: #FFFFFF;
+  font-size: 5em;
+
+}
+
+.formlabels {
+  color: #FFFFFF;
+  font-size: 1.1em;
+}
+
+.formlabels#beerdescription-label {
+  font-size: 0.9em;
+}
+
+fieldset {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+textarea#beerdescription-field {
+  min-height: 6em;
+}

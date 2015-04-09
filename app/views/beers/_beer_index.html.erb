@@ -4,7 +4,7 @@
       <%= link_to image_tag("fallback/default.jpg"), beer_path(beer), class: 'image-link' %>
       <div class="panel">
         <h5>  <%= link_to beer.name, beer_path(beer) %></h5>
-        <h6 class="subheader">Brewery: <%= link_to beer.brewery.name, brewery_path(beer.brewery) %></h6>
+        <p>by <%= link_to beer.brewery.name, brewery_path(beer.brewery) %></p>
         <h6 class="subheader">Rating: <%= beer.average_rating %></h6>
       </div>
     </div>

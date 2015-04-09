@@ -42,45 +42,48 @@
       </div>
     </div>
 
-    <% @beer.reviews.order(created_at: :desc).each do |review| %>
-      <div class="row panel">
-        <div class="small-3 columns">
-          <%= image_tag(review.user.avatar)%>
-        </div>
-        <div class="small-6 columns">
-          <div class="row">
-            <div class="column">
-              <p>Rating: <%= review.rating %>/10</p>
+    <div class="row" id="review_box">
+      <div class="column">
+        <% @beer.reviews.order(created_at: :desc).each do |review| %>
+          <div class="row panel">
+            <div class="small-3 columns">
+              <%= image_tag(review.user.avatar)%>
+            </div>
+            <div class="small-6 columns">
+              <div class="row">
+                <div class="column" id="rating<%= review.id %>">
+                  <p class="review_item<%= review.id %>" id="review_rating<%= review.id %>">Rating: <%= review.rating %>/10</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column" id="description<%= review.id %>">
+                  <p class="review_item<%= review.id %>" id="review_description<%= review.id %>"><%= review.description %></p>
+                </div>
+              </div>
+            </div>
+            <div class="small-3 columns">
+              <% if user_signed_in? %>
+                <div class="upvote">
+                  <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post, id: "upvote" %>
+                </div>
+                <div>
+                  <%= review.upvotes_count %> beer(s) on the wall
+                </div>
+                <div class="downvote">
+                  <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post, id: "downvote" %>
+                </div>
+              <% end %>
+              <% if user_signed_in? && review.amendable?(current_user) %>
+                <ul class="button-group  stack">
+                  <li><%= link_to "Edit Review", edit_beer_review_path(@beer, review), class: "radius button tiny edit_button" %></li>
+                  <li><%= link_to "Delete Review", review_path(review), method: :delete, class: "radius button tiny" %></li>
+                </ul>
+              <% end %>
             </div>
           </div>
-          <div class="row">
-            <div class="column">
-              <p><%= review.description %></p>
-            </div>
-          </div>
-        </div>
-        <div class="small-3 columns">
-          <% if user_signed_in? %>
-            <div class="upvote">
-              <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post, id: "upvote" %>
-            </div>
-            <div>
-              <%= review.upvotes_count %> beer(s) on the wall
-            </div>
-            <div class="downvote">
-              <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post, id: "downvote" %>
-            </div>
-          <% end %>
-          <% if user_signed_in? && review.amendable?(current_user) %>
-            <ul class="button-group  stack">
-              <li><%= link_to "Edit Review", edit_beer_review_path(@beer, review), class: "radius button tiny" %></li>
-              <li><%= link_to "Delete Review", review_path(review), method: :delete, class: "radius button tiny" %></li>
-            </ul>
-          <% end %>
-        </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
