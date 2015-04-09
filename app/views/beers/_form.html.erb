@@ -42,10 +42,10 @@
           <div class="small-4 columns">
             <div class="row">
               <div class="small-3 columns">
-                <%= f.label :style_id, for: "style-field", class: "formlabels right inline" %><br>
+                <%= f.label :style_id, "Style", class: "formlabels right inline" %><br>
               </div>
               <div class="small-9 columns">
-                <%= f.select :style_id, Style.all.map { |s| [s.name, s.id] }, id: "style-field" %>
+                <%= f.select :style_id, Style.all.map { |s| [s.name, s.id] } %>
               </div>
             </div>
           </div>
