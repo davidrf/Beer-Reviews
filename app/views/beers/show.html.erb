@@ -9,6 +9,7 @@
         <div class="row">
           <div class="small-6 columns">
             <h1 class="white-text"><%= @beer.name %></h1>
+            <h6 class="white-text"><%= @beer.average_rating %></h6>
           </div>
           <div class="small-6 columns" id="show-buttons">
             <%-if user_signed_in? && @beer.amendable?(current_user) -%>
