@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root 'beers#index'
   devise_for :users
 
-  resources :beers
-
   resources :reviews do
     resources :downvotes, only: [:create]
     resources :upvotes, only: [:create]
@@ -12,4 +10,8 @@ Rails.application.routes.draw do
   resources :beers do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  resources :styles, only: [:index, :show]
+
+  resources :breweries, only: [:index, :show]
 end

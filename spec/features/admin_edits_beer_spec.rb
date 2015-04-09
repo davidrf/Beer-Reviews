@@ -20,7 +20,7 @@ feature "Admin edits information for each individual beer page", %{
     click_link beer.name
     click_link "Edit Beer"
     fill_in "Name", with: "Budweiser"
-    select "Lager", from: "Style"
+    select beer.style.name, from: "Style"
     click_button "Submit Beer"
 
     expect(page).to have_content("Beer Information Updated")
