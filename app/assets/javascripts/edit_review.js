@@ -5,7 +5,7 @@ $(".edit_button").click(function (event) {
   if (this.text == "Edit Review") {
     var RatingString = $("#review_rating" + ReviewId).text().split(" ");
     var description = $("#review_description" + ReviewId).text();
-    var rating = RatingString[RatingString.length - 1][0];
+    var rating = RatingS tring[RatingString.length - 1][0];
 
     $(".review_item" + ReviewId).remove();
     $(".column#rating" + ReviewId).append(selectBox(rating, ReviewId));

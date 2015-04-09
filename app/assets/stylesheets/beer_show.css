@@ -1,0 +1,13 @@
+.row#beer_details {
+  margin-top: 1em;
+}
+
+.row#review_box {
+  margin-top: 1em;
+}
+
+.row .row.panel {
+  padding: 20px 0px;
+  margin-left: 0.03em;
+  width: 60em;
+}
