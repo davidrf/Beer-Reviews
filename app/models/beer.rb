@@ -26,10 +26,10 @@ class Beer < ActiveRecord::Base
   end
 
   def average_rating
-    if self.reviews.average(:rating) == nil
-      self.reviews.average(:rating)
+    if reviews.average(:rating) == nil
+      reviews.average(:rating)
     else
-      self.reviews.average(:rating).round(1)
+      reviews.average(:rating).round(1)
     end
   end
 end
