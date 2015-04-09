@@ -24,4 +24,12 @@ class Beer < ActiveRecord::Base
       "No Matching Beer"
     end
   end
+
+  def average_rating
+    if self.reviews.average(:rating) == nil
+      self.reviews.average(:rating)
+    else
+      self.reviews.average(:rating).round(1)
+    end
+  end
 end

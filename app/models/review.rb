@@ -24,5 +24,5 @@ class Review < ActiveRecord::Base
     elsif upvotes.find_by(user_id: user)
       upvotes.find_by(user_id: user).destroy
     end
-  end
+  end  
 end
