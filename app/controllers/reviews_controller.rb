@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   respond_to :html, :json, only: :update
 
   def new
+    @beer = Beer.find(params[:beer_id])
     @review = Review.new
   end
 

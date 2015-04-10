@@ -1,8 +1,22 @@
-fieldset legend#beer-legend {
+fieldset legend#legend {
   background: none;
   color: #FFFFFF;
   font-size: 5em;
+}
 
+fieldset legend#passwordlegend {
+  background: none;
+  color: #FFFFFF;
+  font-size: 2em;
+
+}
+
+.formerrors {
+  color: #FFFFFF;
+}
+
+.formerrors h2 {
+  color: #FFFFFF;
 }
 
 .formlabels {
@@ -10,8 +24,21 @@ fieldset legend#beer-legend {
   font-size: 1.1em;
 }
 
-.formlabels#beerdescription-label {
+.formlabels#description-label {
   font-size: 0.9em;
+}
+
+.formlabels#passwordconfirm-label {
+  font-size: 0.9em;
+}
+
+.formlabels#rememberme-label {
+  margin-top: 0.5em;
+  font-size: 0.7em;
+}
+
+#forgotpassword {
+  color: #FFFFFF;
 }
 
 fieldset {

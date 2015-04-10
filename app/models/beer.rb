@@ -15,7 +15,15 @@ class Beer < ActiveRecord::Base
   validates :description, length: { maximum: 5000 }
 
   def self.search(query)
-    where("name ilike ?", "%#{query}%")
+    style = Style.where("name ilike ?", "%#{query}%")
+    brewery = Brewery.where( "name ILIKE ?", "%#{query}%" )
+    if style.count > 0
+      where(style: style)
+    elsif brewery.count > 0
+      where(brewery: brewery)
+    else
+      where("name ilike ?", "%#{query}%")
+    end
   end
 
   def self.search_message
