@@ -19,10 +19,9 @@ class Review < ActiveRecord::Base
   end
 
   def vote_terminator(user)
-    if downvotes.find_by(user_id: user)
-      downvotes.find_by(user_id: user).destroy
-    elsif upvotes.find_by(user_id: user)
-      upvotes.find_by(user_id: user).destroy
-    end
+    user_downvote = downvotes.find_by(user_id: user)
+    user_upvote = upvotes.find_by(user_id: user)
+    user_downvote.destroy if user_downvote
+    user_upvote.destroy if user_upvote
   end
 end

@@ -48,13 +48,13 @@
             <% if user_signed_in? %>
               <div class="small-3 columns">
                 <div class="upvote">
-                  <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post, id: "upvote" %>
+                  <%= link_to raw("<i class='fi-arrow-up'></i>"), review_upvotes_path(review), method: :post, id: "upvote", class: "vote-arrow" %>
                 </div>
                 <div>
-                  <%= review.upvotes_count %> beer(s) on the wall
+                  <span id="upvote_count<%= review.id %>"><%= review.upvotes_count %> beer(s) on the wall</span>
                 </div>
                 <div class="downvote">
-                  <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post, id: "downvote" %>
+                  <%= link_to raw("<i class='fi-arrow-down'></i>"), review_downvotes_path(review), method: :post, id: "downvote", class: "vote-arrow" %>
                 </div>
                 <% if review.amendable?(current_user) %>
                   <ul class="button-group stack">
