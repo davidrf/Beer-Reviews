@@ -2,7 +2,7 @@ $(".edit_button").click(function (event) {
   event.preventDefault();
   var href = this.href.split("/");
   var ReviewId = href[href.length - 2];
-  if (this.text == "Edit Review") {
+  if (this.text === "Edit Review") {
     var RatingString = $("#review_rating" + ReviewId).text().split(" ");
     var description = $("#review_description" + ReviewId).text();
     var rating = RatingString[RatingString.length - 1][0];
@@ -25,7 +25,7 @@ $(".edit_button").click(function (event) {
       url: "/reviews/" + ReviewId,
       dataType: "json",
       data: { review: { rating: NewRating, description: NewDescription } }
-    });
+    })
   }
 });
 
