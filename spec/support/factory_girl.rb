@@ -30,9 +30,9 @@ FactoryGirl.define do
   end
 
   factory :brewery do
-    sequence(:name) { |n| "Victory Brewing Company #{n}" }
-    city "Downingtown"
-    state "PA"
+    sequence(:name) { |n| "Bear Republic Brewing Company #{n}" }
+    city "Healdsburg"
+    state "CA"
     country "United States"
     description "One of my favorites"
   end
