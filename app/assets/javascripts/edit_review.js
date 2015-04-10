@@ -6,7 +6,6 @@ $(".edit_button").click(function (event) {
     var RatingString = $("#review_rating" + ReviewId).text().split(" ");
     var description = $("#review_description" + ReviewId).text();
     var rating = RatingString[RatingString.length - 1][0];
-
     $(".review_item" + ReviewId).remove();
     $(".column#rating" + ReviewId).append(selectBox(rating, ReviewId));
     $(".column#description" + ReviewId).append(textBox(description, ReviewId));
@@ -25,7 +24,7 @@ $(".edit_button").click(function (event) {
       url: "/reviews/" + ReviewId,
       dataType: "json",
       data: { review: { rating: NewRating, description: NewDescription } }
-    })
+    });
   }
 });
 
