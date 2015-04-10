@@ -1,17 +1,21 @@
 <div class="row">
   <div class="column">
     <div class="row" id="beer_details">
-      <div class="small-3 columns">
+      <div class="small-3 columns" id="beer-picture">
         <%= image_tag(@beer.image) %>
       </div>
       <div class="small-9 columns">
         <div class="row">
           <div class="small-6 columns">
-            <h1 class="white-text"><%= @beer.name %></h1>
-            <h6 class="white-text"><%= @beer.average_rating %></h6>
+            <% if @beer.average_rating == nil %>
+              <h1 class="white-text"><%= @beer.name %></h1>
+            <% else %>
+              <h1 class="white-text"><span id="rating"><%= @beer.average_rating %></span> <%= @beer.name %></h1>
+            <% end %>
+            <h4 class="white-text"><%= link_to @beer.brewery.name, brewery_path(@beer.brewery) %></h4>
           </div>
           <div class="small-6 columns" id="show-buttons">
-            <%-if user_signed_in? && @beer.amendable?(current_user) -%>
+            <% if user_signed_in? && @beer.amendable?(current_user) %>
               <ul class="button-group round even-3">
                 <li><%= link_to "New Review", new_beer_review_path(@beer), class: "button tiny" %></li>
                 <li><%= link_to "Delete Beer", beer_path(@beer), method: :delete, class: "button tiny" %></li>
@@ -19,18 +23,12 @@
               </ul>
             <% elsif user_signed_in? %>
                 <%= link_to "New Review", new_beer_review_path(@beer), class: "button radius small" %>
-            <%-end-%>
+            <% end %>
           </div>
         </div>
         <div class="row">
           <div class="small-4 columns">
-            <p class="white-text">Style: <%= @beer.style.name %></p>
-          </div>
-          <div class="small-4 columns">
-            <p class="white-text">ABV: <%= @beer.abv %></p>
-          </div>
-          <div class="small-4 columns">
-            <p class="white-text">IBU: <%= @beer.ibu %></p>
+            <p class="white-text"><%= link_to @beer.style.name, style_path(@beer.style) %>/<%= @beer.abv %>% ABV/<%= @beer.ibu %> IBUs</p>
           </div>
         </div>
         <div class="row">
@@ -44,7 +42,7 @@
     <div class="row" id="review_box">
       <div class="column">
         <% @beer.reviews.order(created_at: :desc).each do |review| %>
-          <div class="row panel">
+          <div class="row panel" id="each_review">
             <% if user_signed_in? %>
               <div class="small-3 columns">
                 <div class="upvote">

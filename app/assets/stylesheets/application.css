@@ -15,7 +15,7 @@
  *= require foundation_and_overrides
 
  */
- @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+ @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
 
  *, h1 , h2, h3, h4, h5, h6 {
    font-family: 'Bree Serif', serif;
@@ -72,7 +72,7 @@ div.description {
 }
 
 .brewery-details {
-  color: #FFFFFF
+  color: #FFFFFF;
 }
 .style-title {
   color: #FFFFFF;

@@ -2,6 +2,29 @@
   margin-top: 1em;
 }
 
+div#beer-picture {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 1em;
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+}
+
+div#each_review {
+  opacity: 0.9;
+  filter: alpha(opacity=60);
+}
+
+span#rating {
+  color: #FFCC01;
+  font-size: 30px;
+  border-style: solid;
+  border-color: #FFCC01;
+  border-width: 3px;
+  border-radius: 1em;
+  padding: 4px;
+}
+
 .row#review_box {
   margin-top: 1em;
 }

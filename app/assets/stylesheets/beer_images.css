@@ -1,0 +1,16 @@
+#beer-images {
+  width: 100%;
+  height: 400px;
+  margin-top: 25px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 1em;
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+}
+
+div#beer-info {
+  opacity: 0.7;
+  filter: alpha(opacity=60);
+}
