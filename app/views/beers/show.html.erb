@@ -46,8 +46,8 @@
       <div class="column">
         <% @beer.reviews.order(created_at: :desc).each do |review| %>
           <div class="row panel">
-            <div class="small-3 columns">
-              <%= image_tag(review.user.avatar)%>
+            <div class="small-3 columns" id="avatar">
+              <%= image_tag(review.user.avatar) %>
             </div>
             <div class="small-6 columns">
               <div class="row">

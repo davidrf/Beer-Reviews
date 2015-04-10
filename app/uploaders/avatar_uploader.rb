@@ -1,8 +1,5 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
-
-  process resize_to_fit: [600, 600]
-
+  
   if Rails.env.production? || Rails.env.development?
     storage :fog
   else
