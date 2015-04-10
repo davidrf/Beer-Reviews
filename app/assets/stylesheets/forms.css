@@ -2,10 +2,20 @@ fieldset legend#legend {
   background: none;
   color: #FFFFFF;
   font-size: 5em;
+}
+
+fieldset legend#passwordlegend {
+  background: none;
+  color: #FFFFFF;
+  font-size: 2em;
 
 }
 
 .formerrors {
+  color: #FFFFFF;
+}
+
+.formerrors h2 {
   color: #FFFFFF;
 }
 
@@ -16,6 +26,19 @@ fieldset legend#legend {
 
 .formlabels#description-label {
   font-size: 0.9em;
+}
+
+.formlabels#passwordconfirm-label {
+  font-size: 0.9em;
+}
+
+.formlabels#rememberme-label {
+  margin-top: 0.5em;
+  font-size: 0.7em;
+}
+
+#forgotpassword {
+  color: #FFFFFF;
 }
 
 fieldset {

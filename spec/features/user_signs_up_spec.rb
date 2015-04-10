@@ -40,7 +40,7 @@ feature 'user registers', %{
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    attach_file('My Avatar', "#{Rails.root}/spec/support/images/example.jpg")
+    attach_file('Avatar', "#{Rails.root}/spec/support/images/example.jpg")
 
     click_button 'Sign up'
 
