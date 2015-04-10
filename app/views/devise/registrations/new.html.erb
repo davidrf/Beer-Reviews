@@ -1,34 +1,53 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="row">
+  <div class="small-6 columns small-centered end">
+    <fieldset>
+      <legend id="legend">Sign up</legend>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="formerrors">
+            <%= devise_error_messages! %>
+          </div>
+          <div class="row">
+            <div class="column">
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :email, for: "email-field", class: "formlabels right inline" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.email_field :email, id: "email-field", placeholder: "email", autofocus: true %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :password, for: "password-field", class: "formlabels right inline" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.password_field :password, id: "password-field", placeholder: "password", autocomplete: "off" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :password_confirmation, for: "password_confirmation-field", class: "formlabels right", id: "passwordconfirm-label" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.password_field :password_confirmation, placeholder: "confirm password", id: "password_confirmation-field", autocomplete: "off" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :avatar, 'Avatar', for: "avatarimage-field", class: "formlabels right" %>
+                </div>
+                <div class="small-6 columns end">
+                  <%= f.file_field :avatar, id: "avatarimage-field" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column small-offset-3">
+                  <%= f.submit "Sign up", class: "button small radius" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </fieldset>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :avatar, 'My Avatar' %><br />
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

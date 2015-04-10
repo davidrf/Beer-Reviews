@@ -1,26 +1,50 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="row">
+  <div class="small-6 columns small-centered end">
+    <fieldset>
+      <legend id="legend">Sign In</legend>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="formerrors">
+            <%= devise_error_messages! %>
+          </div>
+          <div class="row">
+            <div class="column">
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :email, for: "email-field", class: "formlabels right inline" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.email_field :email, id: "email-field", placeholder: "email", autofocus: true %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :password, for: "password-field", class: "formlabels right inline" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.password_field :password, id: "password-field", placeholder: "password", autocomplete: "off" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= f.label :remember_me, for: "rememberme-field", class: "formlabels right", id: "rememberme-label" %>
+                </div>
+                <div class="small-7 columns end">
+                  <%= f.check_box :remember_me, id: "rememberme-field" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column small-offset-3">
+                  <%= f.submit "Log in", class: "button small radius" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="small-7 small-offset-3 columns end">
+            <%= link_to "Forgot your password?", new_user_password_path, id: "forgotpassword" %>
+          </div>
+        </div>
+      </fieldset>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
