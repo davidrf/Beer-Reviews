@@ -2,11 +2,10 @@ $(".edit_button").click(function (event) {
   event.preventDefault();
   var href = this.href.split("/");
   var ReviewId = href[href.length - 2];
-  if (this.text == "Edit Review") {
+  if (this.text === "Edit Review") {
     var RatingString = $("#review_rating" + ReviewId).text().split(" ");
     var description = $("#review_description" + ReviewId).text();
     var rating = RatingString[RatingString.length - 1][0];
-
     $(".review_item" + ReviewId).remove();
     $(".column#rating" + ReviewId).append(selectBox(rating, ReviewId));
     $(".column#description" + ReviewId).append(textBox(description, ReviewId));

@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
     @beer = @review.beer
     if @review.update(review_params)
       flash[:notice] = "Your review has been updated!"
+      binding.pry
       respond_to do |format|
         format.html { redirect_to beer_path(@beer) }
         format.json { render json: @review }
